@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" path="res://Player/player_camera.gd" id="1_ks6y8"]
 
-[node name="Camera3D" type="Camera3D" node_paths=PackedStringArray("target")]
+[node name="Camera3D" type="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 0.894427, 0.447214, 0, -0.447214, 0.894427, 0, 2, 2)
 script = ExtResource("1_ks6y8")
-target = NodePath("")
 offset = Vector3(0, 1, 2)

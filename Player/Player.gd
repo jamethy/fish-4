@@ -5,9 +5,16 @@ extends CharacterBody3D
 @onready var camera = $SpringArm3D/Camera3D
 
 #Speed Variables
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+var lerp_speed = 8.0
+@export_range(0,20,.5) var SPEED = 5.0
+#const JUMP_VELOCITY = 4.5
+
 var has_burst = true
+var is_bursting = false
+var burst_timer = 0.0
+@export_range(0,5,.1) var burst_timer_max:float = 3.0
+@export_range(0,1) var burst_velocity = 5.0
+var burst_vector = Vector2.ZERO
 
 #Input Variables
 var direction = Vector3.ZERO
@@ -41,15 +48,29 @@ func _physics_process(delta):
 
 	# Handle Burst
 	if Input.is_action_just_pressed("Burst") and has_burst:
-		pass
+		print("Burst")
+		is_bursting = true
+		burst_timer = burst_timer_max
+		has_burst = false
+		
+	
+	#Bursting
+	if is_bursting:
+		burst_timer -= delta
+		if  burst_timer <= 0:
+			is_bursting = false
+			has_burst = true
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("Left", "Right", "Forward", "Backward")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var direction = lerp(direction ,(transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(),delta*lerp_speed)
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
+		if is_bursting:
+			velocity.x = direction.x * burst_velocity * burst_timer
+			velocity.z = direction.z * burst_velocity * burst_timer
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
