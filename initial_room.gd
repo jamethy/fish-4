@@ -18,3 +18,4 @@ func _ready():
 
 func _on_player_found_goal_fish(_d: Dictionary):
 	$CanvasLayer.visible = true
+	$Camera3D.target = $GoalFish

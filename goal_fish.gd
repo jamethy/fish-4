@@ -24,5 +24,6 @@ func _physics_process(delta):
 	if not found:
 		return
 	
+	$CollisionShape3D.rotation.y += 2 * delta
+	$FishModel.rotation.y = $CollisionShape3D.rotation.y
 	position.y += 2 * delta
-	rotation.y += 2 * delta
