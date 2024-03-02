@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6qbtrh2sm4vp"]
+[gd_scene load_steps=4 format=3 uid="uid://bgvg735kdpkgt"]
 
 [ext_resource type="Script" path="res://goal_fish.gd" id="1_fnfkc"]
-[ext_resource type="PackedScene" uid="uid://bns62i43p2yrx" path="res://golden_fish.tscn" id="1_n2dtg"]
+[ext_resource type="PackedScene" path="res://golden_fish.tscn" id="1_n2dtg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y3au3"]
 radius = 0.375

@@ -2,7 +2,11 @@ extends Node
 
 signal player_found_goal_fish(d)
 signal player_wriggled(d)
-	#logs current player position to create bubble
+#wriggle count
+signal player_took_damage(d)
+#damage
+signal player_health_changed(d)
+#health_current
 
 func emit(signal_name: String, args: Dictionary = {}):
 	log_signal(signal_name, args)

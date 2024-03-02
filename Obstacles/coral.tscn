@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://btweclvwdaubh"]
+
+[ext_resource type="Script" path="res://Obstacles/coral.gd" id="1_00ffh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_20e5c"]
+size = Vector3(1.75, 1.75, 1.74)
+
+[node name="Coral" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 4
+collision_mask = 5
+freeze = true
+script = ExtResource("1_00ffh")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+use_collision = true
+collision_layer = 4
+collision_mask = 4
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(0.54, 0, 0, 0, 0.54, 0, 0, 0, 0.54, -0.5, 0.5, 0.6)
+use_collision = true
+collision_layer = 4
+collision_mask = 4
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(0.54, 0, 0, 0, 0.54, 0, 0, 0, 0.54, -0.5, 0.5, -0.5)
+use_collision = true
+collision_layer = 4
+collision_mask = 4
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(0.756, 0, 0, 0, 1.0584, 0, 0, 0, 0.756, -0.1, 0.5, 0.1)
+use_collision = true
+collision_layer = 4
+collision_mask = 4
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.4, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_20e5c")
+
+[connection signal="body_shape_entered" from="Area3D" to="." method="_on_area_3d_body_shape_entered"]

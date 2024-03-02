@@ -1,12 +1,18 @@
 extends CharacterBody3D
+class_name Player
 
 @onready var bubble_timer = $BubbleTimer
+@onready var fish_model = $FishModel
 
 
 #Speed Variables
 var lerp_speed = 8.0
 @export_range(0,20,.5) var SPEED = 5.0
 #const JUMP_VELOCITY = 4.5
+
+#Health Variables
+var health_max = 5
+var health_current:int
 
 #Bursting Variables
 var has_burst = true
@@ -35,13 +41,13 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	mouse_visible = false
+	_set_health()
+	Events.player_took_damage.connect(_update_health)
 
 
 func _input(event):
 	if event is InputEventMouseMotion:
 		rotate_y(deg_to_rad(event.relative.x * mouse_sensitivity * -1))
-		#camera.rotate_x(deg_to_rad(event.relative.y * mouse_sensitivity * -1))
-		#camera.rotation.x = clamp(camera.rotation.x,deg_to_rad(-89),deg_to_rad(89))
 
 func  _unhandled_input(event):
 	if Input.is_action_just_pressed("Bubble") and has_bubble and bubble_count > 0:
@@ -63,9 +69,6 @@ func _physics_process(delta):
 		burst_timer = burst_timer_max
 		has_burst = false
 		
-
-		
-	
 	#Bursting
 	if is_bursting:
 		burst_timer -= delta
@@ -105,12 +108,20 @@ func _physics_process(delta):
 func  _create_bubble():
 	has_bubble = false
 	bubble_count -= 1
-	Events.emit("player_wriggled",{"player_pos":self.global_position})
+	Events.emit("player_wriggled",{"player_pos":self.global_position,"bubble_count":bubble_count})
 	#print("%s"% bubble_count)
 	bubble_timer.wait_time = bubble_timout
 	bubble_timer.start()
 
-
 func _on_bubble_timer_timeout():
 	has_bubble = true
 	print("has bubble")
+
+func _set_health():
+	health_current = health_max
+	Events.emit("player_health_changed",{"player_health":health_current})
+
+func _update_health(d:Dictionary):
+	health_current -= d.damage
+	Events.emit("player_health_changed",{"player_health":health_current})
+	
