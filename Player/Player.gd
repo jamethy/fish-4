@@ -13,7 +13,7 @@ var has_burst = true
 var is_bursting = false
 var burst_timer = 0.0
 @export_range(0,5,.1) var burst_timer_max:float = 3.0
-@export_range(0,1) var burst_velocity = 5.0
+@export_range(0,100,1) var burst_velocity:float = 5.0
 var burst_vector = Vector2.ZERO
 
 #Input Variables
@@ -57,7 +57,7 @@ func _physics_process(delta):
 	#Bursting
 	if is_bursting:
 		burst_timer -= delta
-		if  burst_timer <= 0:
+		if  burst_timer <= 1:
 			is_bursting = false
 			has_burst = true
 	
