@@ -1,3 +1,697 @@
-[gd_scene format=3 uid="uid://du0b8ujm3axps"]
+[gd_scene load_steps=11 format=3 uid="uid://du0b8ujm3axps"]
+
+[ext_resource type="PackedScene" uid="uid://b8bi27h5lo5ae" path="res://fish.tscn" id="1_ehy27"]
+[ext_resource type="Texture2D" uid="uid://dafm0canr7uy2" path="res://Assets/Test Tile Textures/texture_01.svg" id="1_ey1qs"]
+[ext_resource type="Script" path="res://player.gd" id="3_ftx7p"]
+
+[sub_resource type="Environment" id="Environment_4d0ln"]
+ambient_light_color = Color(0.827938, 0.754442, 0.702014, 1)
+ambient_light_energy = 4.16
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_at4m5"]
+albedo_color = Color(0.392157, 0.0509804, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_11jqu"]
+material = SubResource("StandardMaterial3D_at4m5")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xu6v0"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qckhb"]
+points = PackedVector3Array(-1, 0, -2, 1, 0, -2, -1, 0, 2, 1, 0, 2, 0.5, 0.75, 1, -0.5, 0.75, 1, 0.5, 0.75, -1, -0.5, 0.75, -1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ulcii"]
+albedo_texture = ExtResource("1_ey1qs")
+uv1_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ba813"]
+size = Vector3(26.486, 1, 25.8117)
 
 [node name="InitialRoom" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4d0ln")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.205808, 2.25066, -9.23608)
+script = ExtResource("3_ftx7p")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, -0.00101225, 0.999999, 0, -0.999999, -0.00101225, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_11jqu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_xu6v0")
+
+[node name="RampCollisionShape" type="CollisionShape3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("ConvexPolygonShape3D_qckhb")
+
+[node name="Wall1" type="StaticBody3D" parent="."]
+transform = Transform3D(-0.0230014, -0.999735, 0, 0.999735, -0.0230014, 0, 0, 0, 1, 13.5508, 1.07353, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Wall1"]
+material_override = SubResource("StandardMaterial3D_ulcii")
+size = Vector3(26.3149, 1, 25.9111)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.112973)
+shape = SubResource("BoxShape3D_ba813")
+
+[node name="Wall2" type="StaticBody3D" parent="."]
+transform = Transform3D(-0.0230014, -0.999735, 0, 0.999735, -0.0230014, 0, 0, 0, 1, -13.191, 1.07353, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Wall2"]
+material_override = SubResource("StandardMaterial3D_ulcii")
+size = Vector3(26.3149, 1, 25.9111)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.112973)
+shape = SubResource("BoxShape3D_ba813")
+
+[node name="Wall3" type="StaticBody3D" parent="."]
+transform = Transform3D(0.0009287, 0.0403653, -0.999185, 0.999736, -0.0230014, 0, -0.0229826, -0.99892, -0.040376, -0.243645, 1.07353, -12.072)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Wall3"]
+material_override = SubResource("StandardMaterial3D_ulcii")
+size = Vector3(26.3149, 1, 25.9111)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.112973)
+shape = SubResource("BoxShape3D_ba813")
+
+[node name="Wall4" type="StaticBody3D" parent="."]
+transform = Transform3D(0.0009287, 0.0403653, -0.999185, 0.999736, -0.0230014, 0, -0.0229826, -0.99892, -0.040376, -0.243645, 1.07353, 12.6273)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Wall4"]
+material_override = SubResource("StandardMaterial3D_ulcii")
+size = Vector3(26.3149, 1, 25.9111)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.112973)
+shape = SubResource("BoxShape3D_ba813")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Floor"]
+material_override = SubResource("StandardMaterial3D_ulcii")
+size = Vector3(26.3149, 1, 25.9111)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.112973)
+shape = SubResource("BoxShape3D_ba813")
+
+[node name="Floor2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.8578, 0)
+visible = false
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Floor2"]
+material_override = SubResource("StandardMaterial3D_ulcii")
+size = Vector3(26.3149, 1, 25.9111)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.112973)
+shape = SubResource("BoxShape3D_ba813")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.975365, -0.0117873, 0.22028, -0.220595, -0.0521177, 0.973972, 0, -0.998571, -0.053434, 6.03979, 13.311, 0)
+spot_range = 4096.0
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.672742, 0.739878, 0, -0.739878, 0.672742, 0, 11.4352, 11.4149)
+
+[node name="Fish" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+mass = 0.01
+
+[node name="Fish2" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -0.717721)
+mass = 0.01
+
+[node name="Fish3" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.89584, 0.967205)
+mass = 0.01
+
+[node name="Fish4" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.23312, 0.986251)
+mass = 0.01
+
+[node name="Fish5" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.746987, 6.232, 0)
+mass = 0.01
+
+[node name="Fish6" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(-0.0371495, 0, -0.99931, 0, 1, 0, 0.99931, 0, -0.0371495, -4.76837e-07, 7.71385, 0.694782)
+mass = 0.01
+
+[node name="Fish7" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59481, 4, -0.717721)
+mass = 0.01
+
+[node name="Fish8" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59481, 4.89584, 0.967205)
+mass = 0.01
+
+[node name="Fish9" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59481, 3.23312, 0.986251)
+mass = 0.01
+
+[node name="Fish10" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.84782, 6.232, 0)
+mass = 0.01
+
+[node name="Fish11" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(-0.0371495, 0, -0.99931, 0, 1, 0, 0.99931, 0, -0.0371495, 2.59481, 7.71385, 0.694782)
+mass = 0.01
+
+[node name="Fish12" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.94288, 4, -0.717721)
+mass = 0.01
+
+[node name="Fish13" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.94288, 4.89584, 0.967205)
+mass = 0.01
+
+[node name="Fish14" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.94288, 3.23312, 0.986251)
+mass = 0.01
+
+[node name="Fish15" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.68986, 6.232, 0)
+mass = 0.01
+
+[node name="Fish16" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(-0.0371495, 0, -0.99931, 0, 1, 0, 0.99931, 0, -0.0371495, -2.94288, 7.71385, 0.694782)
+mass = 0.01
+
+[node name="Fish17" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -4.43249)
+mass = 0.01
+
+[node name="Fish18" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -5.15021)
+mass = 0.01
+
+[node name="Fish19" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.89584, -3.46529)
+mass = 0.01
+
+[node name="Fish20" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.23312, -3.44624)
+mass = 0.01
+
+[node name="Fish21" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.746987, 6.232, -4.43249)
+mass = 0.01
+
+[node name="Fish22" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(-0.0371495, 0, -0.99931, 0, 1, 0, 0.99931, 0, -0.0371495, -4.76837e-07, 7.71385, -3.73771)
+mass = 0.01
+
+[node name="Fish23" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59481, 4, -5.15021)
+mass = 0.01
+
+[node name="Fish24" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59481, 4.89584, -3.46529)
+mass = 0.01
+
+[node name="Fish25" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59481, 3.23312, -3.44624)
+mass = 0.01
+
+[node name="Fish26" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.84782, 6.232, -4.43249)
+mass = 0.01
+
+[node name="Fish27" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(-0.0371495, 0, -0.99931, 0, 1, 0, 0.99931, 0, -0.0371495, 2.59481, 7.71385, -3.73771)
+mass = 0.01
+
+[node name="Fish28" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.94288, 4, -5.15021)
+mass = 0.01
+
+[node name="Fish29" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.94288, 4.89584, -3.46529)
+mass = 0.01
+
+[node name="Fish30" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.94288, 3.23312, -3.44624)
+mass = 0.01
+
+[node name="Fish31" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.68986, 6.232, -4.43249)
+mass = 0.01
+
+[node name="Fish32" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(-0.0371495, 0, -0.99931, 0, 1, 0, 0.99931, 0, -0.0371495, -2.94288, 7.71385, -3.73771)
+mass = 0.01
+
+[node name="Fish33" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 4.47639)
+mass = 0.01
+
+[node name="Fish34" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 3.75867)
+mass = 0.01
+
+[node name="Fish35" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.89584, 5.4436)
+mass = 0.01
+
+[node name="Fish36" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.23312, 5.46264)
+mass = 0.01
+
+[node name="Fish37" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.746987, 6.232, 4.47639)
+mass = 0.01
+
+[node name="Fish38" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(-0.0371495, 0, -0.99931, 0, 1, 0, 0.99931, 0, -0.0371495, -4.76837e-07, 7.71385, 5.17117)
+mass = 0.01
+
+[node name="Fish39" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59481, 4, 3.75867)
+mass = 0.01
+
+[node name="Fish40" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59481, 4.89584, 5.4436)
+mass = 0.01
+
+[node name="Fish41" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59481, 3.23312, 5.46264)
+mass = 0.01
+
+[node name="Fish42" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.84782, 6.232, 4.47639)
+mass = 0.01
+
+[node name="Fish43" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(-0.0371495, 0, -0.99931, 0, 1, 0, 0.99931, 0, -0.0371495, 2.59481, 7.71385, 5.17117)
+mass = 0.01
+
+[node name="Fish44" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.94288, 4, 3.75867)
+mass = 0.01
+
+[node name="Fish45" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.94288, 4.89584, 5.4436)
+mass = 0.01
+
+[node name="Fish46" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.94288, 3.23312, 5.46264)
+mass = 0.01
+
+[node name="Fish47" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.68986, 6.232, 4.47639)
+mass = 0.01
+
+[node name="Fish48" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(-0.0371495, 0, -0.99931, 0, 1, 0, 0.99931, 0, -0.0371495, -2.94288, 7.71385, 5.17117)
+mass = 0.01
+
+[node name="Fish49" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.54588, 2, 0)
+mass = 0.01
+
+[node name="Fish50" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.54588, 4, -0.717721)
+mass = 0.01
+
+[node name="Fish51" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.54588, 4.89584, 0.967205)
+mass = 0.01
+
+[node name="Fish52" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.54588, 3.23312, 0.986251)
+mass = 0.01
+
+[node name="Fish53" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.79889, 6.232, 0)
+mass = 0.01
+
+[node name="Fish54" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(-0.0371495, 0, -0.99931, 0, 1, 0, 0.99931, 0, -0.0371495, 8.54588, 7.71385, 0.694782)
+mass = 0.01
+
+[node name="Fish55" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1407, 4, -0.717721)
+mass = 0.01
+
+[node name="Fish56" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1407, 4.89584, 0.967205)
+mass = 0.01
+
+[node name="Fish57" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1407, 3.23312, 0.986251)
+mass = 0.01
+
+[node name="Fish58" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3937, 6.232, 0)
+mass = 0.01
+
+[node name="Fish59" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(-0.0371495, 0, -0.99931, 0, 1, 0, 0.99931, 0, -0.0371495, 11.1407, 7.71385, 0.694782)
+mass = 0.01
+
+[node name="Fish60" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.603, 4, -0.717721)
+mass = 0.01
+
+[node name="Fish61" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.603, 4.89584, 0.967205)
+mass = 0.01
+
+[node name="Fish62" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.603, 3.23312, 0.986251)
+mass = 0.01
+
+[node name="Fish63" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.85601, 6.232, 0)
+mass = 0.01
+
+[node name="Fish64" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(-0.0371495, 0, -0.99931, 0, 1, 0, 0.99931, 0, -0.0371495, 5.603, 7.71385, 0.694782)
+mass = 0.01
+
+[node name="Fish65" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.54588, 2, -4.43249)
+mass = 0.01
+
+[node name="Fish66" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.54588, 4, -5.15021)
+mass = 0.01
+
+[node name="Fish67" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.54588, 4.89584, -3.46529)
+mass = 0.01
+
+[node name="Fish68" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.54588, 3.23312, -3.44624)
+mass = 0.01
+
+[node name="Fish69" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.79889, 6.232, -4.43249)
+mass = 0.01
+
+[node name="Fish70" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(-0.0371495, 0, -0.99931, 0, 1, 0, 0.99931, 0, -0.0371495, 8.54588, 7.71385, -3.73771)
+mass = 0.01
+
+[node name="Fish71" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1407, 4, -5.15021)
+mass = 0.01
+
+[node name="Fish72" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1407, 4.89584, -3.46529)
+mass = 0.01
+
+[node name="Fish73" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1407, 3.23312, -3.44624)
+mass = 0.01
+
+[node name="Fish74" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3937, 6.232, -4.43249)
+mass = 0.01
+
+[node name="Fish75" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(-0.0371495, 0, -0.99931, 0, 1, 0, 0.99931, 0, -0.0371495, 11.1407, 7.71385, -3.73771)
+mass = 0.01
+
+[node name="Fish76" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.603, 4, -5.15021)
+mass = 0.01
+
+[node name="Fish77" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.603, 4.89584, -3.46529)
+mass = 0.01
+
+[node name="Fish78" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.603, 3.23312, -3.44624)
+mass = 0.01
+
+[node name="Fish79" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.85601, 6.232, -4.43249)
+mass = 0.01
+
+[node name="Fish80" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(-0.0371495, 0, -0.99931, 0, 1, 0, 0.99931, 0, -0.0371495, 5.603, 7.71385, -3.73771)
+mass = 0.01
+
+[node name="Fish81" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.54588, 2, 4.47639)
+mass = 0.01
+
+[node name="Fish82" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.54588, 4, 3.75867)
+mass = 0.01
+
+[node name="Fish83" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.54588, 4.89584, 5.4436)
+mass = 0.01
+
+[node name="Fish84" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.54588, 3.23312, 5.46264)
+mass = 0.01
+
+[node name="Fish85" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.79889, 6.232, 4.47639)
+mass = 0.01
+
+[node name="Fish86" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(-0.0371495, 0, -0.99931, 0, 1, 0, 0.99931, 0, -0.0371495, 8.54588, 7.71385, 5.17117)
+mass = 0.01
+
+[node name="Fish87" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1407, 4, 3.75867)
+mass = 0.01
+
+[node name="Fish88" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1407, 4.89584, 5.4436)
+mass = 0.01
+
+[node name="Fish89" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1407, 3.23312, 5.46264)
+mass = 0.01
+
+[node name="Fish90" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3937, 6.232, 4.47639)
+mass = 0.01
+
+[node name="Fish91" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(-0.0371495, 0, -0.99931, 0, 1, 0, 0.99931, 0, -0.0371495, 11.1407, 7.71385, 5.17117)
+mass = 0.01
+
+[node name="Fish92" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.603, 4, 3.75867)
+mass = 0.01
+
+[node name="Fish93" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.603, 4.89584, 5.4436)
+mass = 0.01
+
+[node name="Fish94" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.603, 3.23312, 5.46264)
+mass = 0.01
+
+[node name="Fish95" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.85601, 6.232, 4.47639)
+mass = 0.01
+
+[node name="Fish96" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(-0.0371495, 0, -0.99931, 0, 1, 0, 0.99931, 0, -0.0371495, 5.603, 7.71385, 5.17117)
+mass = 0.01
+
+[node name="Fish97" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.91063, 2, 0)
+mass = 0.01
+
+[node name="Fish98" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.91063, 4, -0.717721)
+mass = 0.01
+
+[node name="Fish99" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.91063, 4.89584, 0.967205)
+mass = 0.01
+
+[node name="Fish100" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.91063, 3.23312, 0.986251)
+mass = 0.01
+
+[node name="Fish101" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.65762, 6.232, 0)
+mass = 0.01
+
+[node name="Fish102" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(-0.0371495, 0, -0.99931, 0, 1, 0, 0.99931, 0, -0.0371495, -7.91063, 7.71385, 0.694782)
+mass = 0.01
+
+[node name="Fish103" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.31583, 4, -0.717721)
+mass = 0.01
+
+[node name="Fish104" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.31583, 4.89584, 0.967205)
+mass = 0.01
+
+[node name="Fish105" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.31583, 3.23312, 0.986251)
+mass = 0.01
+
+[node name="Fish106" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.06281, 6.232, 0)
+mass = 0.01
+
+[node name="Fish107" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(-0.0371495, 0, -0.99931, 0, 1, 0, 0.99931, 0, -0.0371495, -5.31583, 7.71385, 0.694782)
+mass = 0.01
+
+[node name="Fish108" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.8535, 4, -0.717721)
+mass = 0.01
+
+[node name="Fish109" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.8535, 4.89584, 0.967205)
+mass = 0.01
+
+[node name="Fish110" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.8535, 3.23312, 0.986251)
+mass = 0.01
+
+[node name="Fish111" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6005, 6.232, 0)
+mass = 0.01
+
+[node name="Fish112" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(-0.0371495, 0, -0.99931, 0, 1, 0, 0.99931, 0, -0.0371495, -10.8535, 7.71385, 0.694782)
+mass = 0.01
+
+[node name="Fish113" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.91063, 2, -4.43249)
+mass = 0.01
+
+[node name="Fish114" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.91063, 4, -5.15021)
+mass = 0.01
+
+[node name="Fish115" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.91063, 4.89584, -3.46529)
+mass = 0.01
+
+[node name="Fish116" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.91063, 3.23312, -3.44624)
+mass = 0.01
+
+[node name="Fish117" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.65762, 6.232, -4.43249)
+mass = 0.01
+
+[node name="Fish118" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(-0.0371495, 0, -0.99931, 0, 1, 0, 0.99931, 0, -0.0371495, -7.91063, 7.71385, -3.73771)
+mass = 0.01
+
+[node name="Fish119" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.31583, 4, -5.15021)
+mass = 0.01
+
+[node name="Fish120" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.31583, 4.89584, -3.46529)
+mass = 0.01
+
+[node name="Fish121" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.31583, 3.23312, -3.44624)
+mass = 0.01
+
+[node name="Fish122" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.06281, 6.232, -4.43249)
+mass = 0.01
+
+[node name="Fish123" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(-0.0371495, 0, -0.99931, 0, 1, 0, 0.99931, 0, -0.0371495, -5.31583, 7.71385, -3.73771)
+mass = 0.01
+
+[node name="Fish124" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.8535, 4, -5.15021)
+mass = 0.01
+
+[node name="Fish125" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.8535, 4.89584, -3.46529)
+mass = 0.01
+
+[node name="Fish126" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.8535, 3.23312, -3.44624)
+mass = 0.01
+
+[node name="Fish127" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6005, 6.232, -4.43249)
+mass = 0.01
+
+[node name="Fish128" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(-0.0371495, 0, -0.99931, 0, 1, 0, 0.99931, 0, -0.0371495, -10.8535, 7.71385, -3.73771)
+mass = 0.01
+
+[node name="Fish129" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.91063, 2, 4.47639)
+mass = 0.01
+
+[node name="Fish130" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.91063, 4, 3.75867)
+mass = 0.01
+
+[node name="Fish131" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.91063, 4.89584, 5.4436)
+mass = 0.01
+
+[node name="Fish132" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.91063, 3.23312, 5.46264)
+mass = 0.01
+
+[node name="Fish133" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.65762, 6.232, 4.47639)
+mass = 0.01
+
+[node name="Fish134" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(-0.0371495, 0, -0.99931, 0, 1, 0, 0.99931, 0, -0.0371495, -7.91063, 7.71385, 5.17117)
+mass = 0.01
+
+[node name="Fish135" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.31583, 4, 3.75867)
+mass = 0.01
+
+[node name="Fish136" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.31583, 4.89584, 5.4436)
+mass = 0.01
+
+[node name="Fish137" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.31583, 3.23312, 5.46264)
+mass = 0.01
+
+[node name="Fish138" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.06281, 6.232, 4.47639)
+mass = 0.01
+
+[node name="Fish139" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(-0.0371495, 0, -0.99931, 0, 1, 0, 0.99931, 0, -0.0371495, -5.31583, 7.71385, 5.17117)
+mass = 0.01
+
+[node name="Fish140" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.8535, 4, 3.75867)
+mass = 0.01
+
+[node name="Fish141" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.8535, 4.89584, 5.4436)
+mass = 0.01
+
+[node name="Fish142" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.8535, 3.23312, 5.46264)
+mass = 0.01
+
+[node name="Fish143" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6005, 6.232, 4.47639)
+mass = 0.01
+
+[node name="Fish144" parent="." instance=ExtResource("1_ehy27")]
+transform = Transform3D(-0.0371495, 0, -0.99931, 0, 1, 0, 0.99931, 0, -0.0371495, -10.8535, 7.71385, 5.17117)
+mass = 0.01
