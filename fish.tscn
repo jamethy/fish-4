@@ -1,16 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://b8bi27h5lo5ae"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_7hep0"]
+[ext_resource type="PackedScene" uid="uid://j122buc2nx6s" path="res://Assets/FishV2/FishV2.gltf" id="1_ki6cs"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_im31q"]
+radius = 0.375
 
 [node name="Fish" type="RigidBody3D"]
 collision_layer = 3
 collision_mask = 3
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.00101225, 0.999999, 0, -0.999999, -0.00101225, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_7hep0")
+[node name="FishModel" parent="." instance=ExtResource("1_ki6cs")]
+transform = Transform3D(-1.31134e-07, 0, -3, 0, 3, 0, 3, 0, -1.31134e-07, 0, 0.04079, -0.0652708)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)

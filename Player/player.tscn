@@ -1,11 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://ua1b473dkgkh"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_n87ny"]
+[ext_resource type="PackedScene" uid="uid://fxeu1jvy28rn" path="res://Assets/FishV1/FishV1.gltf" id="2_j08mt"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uuyoy"]
-height = 1.5
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_05ut4"]
 height = 1.5
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rr7ru"]
@@ -15,13 +13,12 @@ points = PackedVector3Array(-1, 0, -2, 1, 0, -2, -1, 0, 2, 1, 0, 2, 0.5, 0.75, 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00230026, 0.506608, -0.00224853)
 script = ExtResource("1_n87ny")
 
+[node name="FishModel" parent="." instance=ExtResource("2_j08mt")]
+transform = Transform3D(-1.31134e-07, 0, -3, 0, 3, 0, 3, 0, -1.31134e-07, 0, 0, -0.109647)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_uuyoy")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_05ut4")
 
 [node name="RampCollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
