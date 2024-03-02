@@ -6,27 +6,22 @@
 [ext_resource type="Script" path="res://UI/Interface.gd" id="4_lsw5d"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uuyoy"]
-height = 1.5
+height = 2.409
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rr7ru"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bglvr"]
 points = PackedVector3Array(-1, 0, -2, 1, 0, -2, -1, 0, 2, 1, 0, 2, 0.5, 0.75, 1, -0.5, 0.75, 1, 0.5, 0.75, -1, -0.5, 0.75, -1)
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00230026, 0.506608, -0.00224853)
-collision_mask = 5
+collision_mask = 7
 script = ExtResource("1_n87ny")
 
 [node name="FishModel" parent="." instance=ExtResource("2_j08mt")]
 transform = Transform3D(-1.31134e-07, 0, -3, 0, 3, 0, 3, 0, -1.31134e-07, 0, 0, -0.109647)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -6.99382e-08, -1, 0, 1.6, -4.37114e-08, 0, 0, -0.2)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.1)
 shape = SubResource("CapsuleShape3D_uuyoy")
-
-[node name="RampCollisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-shape = SubResource("ConvexPolygonShape3D_rr7ru")
-disabled = true
 
 [node name="BubbleTimer" type="Timer" parent="."]
 one_shot = true
@@ -86,6 +81,10 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 56
 text = "GAME OVER"
+
+[node name="RampCollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0, -0.5, 0)
+shape = SubResource("ConvexPolygonShape3D_bglvr")
 
 [connection signal="timeout" from="BubbleTimer" to="." method="_on_bubble_timer_timeout"]
 

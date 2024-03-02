@@ -1,4 +1,5 @@
-extends RigidBody3D
+extends StaticBody3D
+
 
 @export var coral_damage = 2
 

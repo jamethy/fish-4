@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://cl8ixxwobx73a"]
+
+[ext_resource type="Script" path="res://Obstacles/coral.gd" id="1_1eo5t"]
+[ext_resource type="PackedScene" uid="uid://cmg4kexiuvav7" path="res://Assets/Corals/Coral2.glb" id="2_bt8xb"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_k76ah"]
+points = PackedVector3Array(-0.0126964, 0.00158055, 0.0299523, -0.0126964, -0.0123807, -0.0335349, -0.0126964, -0.00984131, -0.0335349, 0.0406349, -0.00730187, 0.00455609, 0.00762104, 0.0180887, -0.0157543, -0.0406349, 0.0104704, -0.000516559, -0.0152341, -0.0174633, 0.0223367, 0.0152341, 0.0155456, 0.0109002, 0.0253928, -0.0187349, 0.00836388, -0.0406349, -0.00476244, -0.00686726, -0.0279305, 0.00158055, -0.0297205, 0.00126487, -0.0149202, -0.0322635, -0.0190367, -0.00984131, 0.0337667, 0.0279305, -0.00603402, 0.0185224, -0.0342788, 0.0142777, 0.00709901, 0.0355516, 0.00411626, -0.00178802, 0.00634821, -0.00730187, -0.030992, -0.0266577, 0.0142777, -0.0132048, -0.0279305, -0.0149202, 0.00709901, 0.0228552, -0.0161918, 0.0185224, -0.0279305, -0.00603402, 0.0261445, 0.00126487, 0.0193603, 0.00201977, -0.0215823, 0.00792727, 0.0236016, 0.0101587, 0.0130061, -0.0208335, 0.0279305, 0.0028484, 0.0159794, -0.0203095, -0.0149202, -0.0182906, 0.0253928, 0.0142777, 0.00328464, 0.0266657, -0.0187349, 0.00328464, -0.0152341, 0.00919512, -0.0259128, -0.0342788, 0.0155493, -0.00305289, 0.0393621, -0.000955153, 0.00836388, -0.0101587, -0.00349086, 0.0324952)
+
+[node name="Coral" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_1eo5t")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.4, 0)
+collision_layer = 4
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(16, 0, 0, 0, 16, 0, 0, 0, 16, 0.1, -0.8, 0)
+shape = SubResource("ConvexPolygonShape3D_k76ah")
+
+[node name="Coral2" parent="." instance=ExtResource("2_bt8xb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(16, 0, 0, 0, 16, 0, 0, 0, 16, 0, -0.4, 0)
+shape = SubResource("ConvexPolygonShape3D_k76ah")
+
+[connection signal="body_shape_entered" from="Area3D" to="." method="_on_area_3d_body_shape_entered"]
+
+[editable path="Coral2"]

@@ -1,11 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://d3fiuxx6srntl"]
+[gd_scene load_steps=12 format=3 uid="uid://d3fiuxx6srntl"]
 
 [ext_resource type="Script" path="res://Scenes/test-scene.gd" id="1_5vkwr"]
 [ext_resource type="Texture2D" uid="uid://dafm0canr7uy2" path="res://Assets/Test Tile Textures/texture_01.svg" id="1_kua01"]
 [ext_resource type="PackedScene" uid="uid://ua1b473dkgkh" path="res://Player/player.tscn" id="2_rc6cb"]
 [ext_resource type="PackedScene" uid="uid://de1ollje6u46c" path="res://Player/player_camera.tscn" id="3_ohokl"]
-[ext_resource type="PackedScene" uid="uid://btweclvwdaubh" path="res://Obstacles/coral.tscn" id="5_ui2i0"]
+[ext_resource type="PackedScene" uid="uid://btweclvwdaubh" path="res://Obstacles/coral1.tscn" id="5_ui2i0"]
 [ext_resource type="PackedScene" uid="uid://bgvg735kdpkgt" path="res://goal_fish.tscn" id="6_sdkir"]
+[ext_resource type="PackedScene" uid="uid://cl8ixxwobx73a" path="res://Obstacles/coral2.tscn" id="7_dccaf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_28j67"]
 albedo_texture = ExtResource("1_kua01")
@@ -24,7 +25,7 @@ ambient_light_color = Color(0.498039, 0.498039, 0.498039, 1)
 
 [node name="test-scene" type="Node3D"]
 script = ExtResource("1_5vkwr")
-fish_count = 5
+fish_count = 200
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 use_collision = true
@@ -91,3 +92,6 @@ transform = Transform3D(2.1, 0, 0, 0, 2.1, 0, 0, 0, 2.1, -3.43107, 0.573567, 4.6
 
 [node name="GoalFish" parent="." instance=ExtResource("6_sdkir")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 4, 9)
+
+[node name="Coral4" parent="." instance=ExtResource("7_dccaf")]
+transform = Transform3D(2.47, 0, 0, 0, 2.47, 0, 0, 0, 2.47, 0.9, 1.8, 7)
