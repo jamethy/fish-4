@@ -1,23 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://du0b8ujm3axps"]
+[gd_scene load_steps=8 format=3 uid="uid://du0b8ujm3axps"]
 
 [ext_resource type="PackedScene" uid="uid://b8bi27h5lo5ae" path="res://fish.tscn" id="1_ehy27"]
 [ext_resource type="Texture2D" uid="uid://dafm0canr7uy2" path="res://Assets/Test Tile Textures/texture_01.svg" id="1_ey1qs"]
-[ext_resource type="Script" path="res://player.gd" id="3_ftx7p"]
+[ext_resource type="PackedScene" uid="uid://ua1b473dkgkh" path="res://Player/player.tscn" id="1_hkrpd"]
+[ext_resource type="PackedScene" uid="uid://de1ollje6u46c" path="res://Player/player_camera.tscn" id="4_l5wrg"]
 
 [sub_resource type="Environment" id="Environment_4d0ln"]
 ambient_light_color = Color(0.827938, 0.754442, 0.702014, 1)
 ambient_light_energy = 4.16
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_at4m5"]
-albedo_color = Color(0.392157, 0.0509804, 1, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_11jqu"]
-material = SubResource("StandardMaterial3D_at4m5")
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xu6v0"]
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qckhb"]
-points = PackedVector3Array(-1, 0, -2, 1, 0, -2, -1, 0, 2, 1, 0, 2, 0.5, 0.75, 1, -0.5, 0.75, 1, 0.5, 0.75, -1, -0.5, 0.75, -1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ulcii"]
 albedo_texture = ExtResource("1_ey1qs")
@@ -31,21 +21,10 @@ size = Vector3(26.486, 1, 25.8117)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_4d0ln")
 
-[node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.205808, 2.25066, -9.23608)
-script = ExtResource("3_ftx7p")
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, -0.00101225, 0.999999, 0, -0.999999, -0.00101225, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_11jqu")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_xu6v0")
-
-[node name="RampCollisionShape" type="CollisionShape3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-shape = SubResource("ConvexPolygonShape3D_qckhb")
+[node name="Player2" parent="." instance=ExtResource("1_hkrpd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00230026, 1.59301, -9.15647)
+SPEED = 10.0
+burst_velocity = 35.0
 
 [node name="Wall1" type="StaticBody3D" parent="."]
 transform = Transform3D(-0.0230014, -0.999735, 0, 0.999735, -0.0230014, 0, 0, 0, 1, 13.5508, 1.07353, 0)
@@ -116,9 +95,6 @@ shape = SubResource("BoxShape3D_ba813")
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(0.975365, -0.0117873, 0.22028, -0.220595, -0.0521177, 0.973972, 0, -0.998571, -0.053434, 6.03979, 13.311, 0)
 spot_range = 4096.0
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.672742, 0.739878, 0, -0.739878, 0.672742, 0, 11.4352, 11.4149)
 
 [node name="Fish" parent="." instance=ExtResource("1_ehy27")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
@@ -695,3 +671,7 @@ mass = 0.01
 [node name="Fish144" parent="." instance=ExtResource("1_ehy27")]
 transform = Transform3D(-0.0371495, 0, -0.99931, 0, 1, 0, 0.99931, 0, -0.0371495, -10.8535, 7.71385, 5.17117)
 mass = 0.01
+
+[node name="Camera3D" parent="." node_paths=PackedStringArray("target") instance=ExtResource("4_l5wrg")]
+transform = Transform3D(1, 0, 0, 0, 0.894428, 0.447213, 0, -0.447213, 0.894428, -0.00230026, 2.59301, -7.15647)
+target = NodePath("../Player2")
