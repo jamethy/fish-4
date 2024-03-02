@@ -23,3 +23,10 @@ shape = SubResource("CapsuleShape3D_uuyoy")
 [node name="RampCollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("ConvexPolygonShape3D_rr7ru")
+
+[node name="BubbleTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="BubbleTimer" to="." method="_on_bubble_timer_timeout"]
+
+[editable path="FishModel"]

@@ -1,10 +1,15 @@
 extends CharacterBody3D
 
+@onready var bubble_timer = $BubbleTimer
+signal create_bubble (position)
+
+
 #Speed Variables
 var lerp_speed = 8.0
 @export_range(0,20,.5) var SPEED = 5.0
 #const JUMP_VELOCITY = 4.5
 
+#Bursting Variables
 var has_burst = true
 var is_bursting = false
 var burst_timer = 0.0
@@ -13,6 +18,11 @@ var burst_timer = 0.0
 var burst_vector = Vector2.ZERO
 
 @export_range(0.001, 0.05) var fish_impact_force: float = 0.007
+
+#Bubble
+var has_bubble = true
+var bubble_count:int = 5
+var bubble_timout:float = 5.0
 
 #Input Variables
 var direction = Vector3.ZERO
@@ -34,6 +44,9 @@ func _input(event):
 		#camera.rotate_x(deg_to_rad(event.relative.y * mouse_sensitivity * -1))
 		#camera.rotation.x = clamp(camera.rotation.x,deg_to_rad(-89),deg_to_rad(89))
 
+func  _unhandled_input(event):
+	if Input.is_action_just_pressed("Bubble") and has_bubble and bubble_count > 0:
+		_create_bubble()
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -50,6 +63,8 @@ func _physics_process(delta):
 		is_bursting = true
 		burst_timer = burst_timer_max
 		has_burst = false
+		
+
 		
 	
 	#Bursting
@@ -85,3 +100,16 @@ func _physics_process(delta):
 		var c = get_slide_collision(i)
 		if c.get_collider() is RigidBody3D:
 			c.get_collider().apply_central_impulse(-c.get_normal() * speed * fish_impact_force)
+
+func  _create_bubble():
+	has_bubble = false
+	bubble_count -= 1
+	emit_signal("create_bubble")
+	print("%s"% bubble_count)
+	bubble_timer.wait_time = bubble_timout
+	bubble_timer.start()
+
+
+func _on_bubble_timer_timeout():
+	has_bubble = true
+	print("has bubble")

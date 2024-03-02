@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbxk3uwxqds48"]
+
+[ext_resource type="Script" path="res://Player/bubble.gd" id="1_jx4np"]
+
+[node name="Bubble" type="Node3D"]
+script = ExtResource("1_jx4np")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+use_collision = true
+collision_layer = 2
+collision_mask = 2
+radius = 1.0
+radial_segments = 16
