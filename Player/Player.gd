@@ -1,9 +1,5 @@
 extends CharacterBody3D
 
-@onready var mesh_instance_3d = $MeshInstance3D
-@onready var collision_shape_3d = $CollisionShape3D
-@onready var camera = $SpringArm3D/Camera3D
-
 #Speed Variables
 var lerp_speed = 8.0
 @export_range(0,20,.5) var SPEED = 5.0
@@ -15,6 +11,8 @@ var burst_timer = 0.0
 @export_range(0,5,.1) var burst_timer_max:float = 3.0
 @export_range(0,100,1) var burst_velocity:float = 5.0
 var burst_vector = Vector2.ZERO
+
+@export_range(0.001, 0.05) var fish_impact_force: float = 0.007
 
 #Input Variables
 var direction = Vector3.ZERO
@@ -75,9 +73,15 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
+	# todo why can't I trust velocity
+	var previous_pos = position
 	move_and_slide()
+	
+	if get_slide_collision_count() == 0:
+		return
+	var speed = ((position - previous_pos) / delta).length()
 	
 	for i in get_slide_collision_count():
 		var c = get_slide_collision(i)
 		if c.get_collider() is RigidBody3D:
-			c.get_collider().apply_central_impulse(-c.get_normal() * 0.02)
+			c.get_collider().apply_central_impulse(-c.get_normal() * speed * fish_impact_force)
