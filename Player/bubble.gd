@@ -3,8 +3,8 @@ class_name Bubble
 
 @onready var bubble = $CSGSphere3D
 @onready var bubble_life:float 
-@onready var bubble_life_max = 5.0
-@onready var bubble_speed = .1
+@onready var bubble_life_max = .2
+@onready var bubble_speed = .3
 
 func _ready():
 	bubble_life = bubble_life_max

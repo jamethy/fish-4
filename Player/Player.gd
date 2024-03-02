@@ -1,7 +1,6 @@
 extends CharacterBody3D
 
 @onready var bubble_timer = $BubbleTimer
-signal create_bubble (position)
 
 
 #Speed Variables
@@ -21,8 +20,8 @@ var burst_vector = Vector2.ZERO
 
 #Bubble
 var has_bubble = true
-var bubble_count:int = 5
-var bubble_timout:float = 5.0
+@export var bubble_count:int = 5
+@export_range(0,5.0,.5) var bubble_timout:float = 5.0
 
 #Input Variables
 var direction = Vector3.ZERO
@@ -106,8 +105,8 @@ func _physics_process(delta):
 func  _create_bubble():
 	has_bubble = false
 	bubble_count -= 1
-	emit_signal("create_bubble")
-	print("%s"% bubble_count)
+	Events.emit("player_wriggled",{"player_pos":self.global_position})
+	#print("%s"% bubble_count)
 	bubble_timer.wait_time = bubble_timout
 	bubble_timer.start()
 

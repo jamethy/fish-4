@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://bbxk3uwxqds48"]
+[gd_scene load_steps=3 format=3 uid="uid://bbxk3uwxqds48"]
 
 [ext_resource type="Script" path="res://Player/bubble.gd" id="1_jx4np"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jxc4c"]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(1, 0.270588, 0.270588, 0.443137)
+emission_enabled = true
+emission = Color(0.545098, 0, 0, 1)
+emission_energy_multiplier = 1.46
+backlight_enabled = true
+backlight = Color(0.678431, 0, 0, 1)
 
 [node name="Bubble" type="Node3D"]
 script = ExtResource("1_jx4np")
@@ -9,5 +19,6 @@ script = ExtResource("1_jx4np")
 use_collision = true
 collision_layer = 2
 collision_mask = 2
-radius = 1.0
+radius = 0.05
 radial_segments = 16
+material = SubResource("StandardMaterial3D_jxc4c")
