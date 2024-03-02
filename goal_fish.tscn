@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6qbtrh2sm4vp"]
+
+[ext_resource type="Script" path="res://goal_fish.gd" id="1_fnfkc"]
+[ext_resource type="PackedScene" uid="uid://bns62i43p2yrx" path="res://golden_fish.tscn" id="1_n2dtg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y3au3"]
+radius = 0.375
+height = 1.49846
+
+[node name="GoalFish" type="RigidBody3D"]
+script = ExtResource("1_fnfkc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_y3au3")
+
+[node name="FishModel" parent="." instance=ExtResource("1_n2dtg")]
+transform = Transform3D(-8.74228e-08, 0, -2, 0, 2, 0, 2, 0, -8.74228e-08, 0, 0, 0)
