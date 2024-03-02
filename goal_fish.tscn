@@ -1,13 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://bgvg735kdpkgt"]
 
 [ext_resource type="Script" path="res://goal_fish.gd" id="1_fnfkc"]
-[ext_resource type="PackedScene" path="res://golden_fish.tscn" id="1_n2dtg"]
+[ext_resource type="PackedScene" uid="uid://kvostdgthy0x" path="res://golden_fish.tscn" id="1_n2dtg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y3au3"]
 radius = 0.375
 height = 1.49846
 
 [node name="GoalFish" type="RigidBody3D"]
+collision_layer = 2
+collision_mask = 7
 script = ExtResource("1_fnfkc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

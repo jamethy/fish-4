@@ -1,6 +1,7 @@
 extends Node3D
 
 const BUBBLE = preload("res://Player/bubble.tscn")
+@onready var camera_3d = $Camera3D
 
 @onready
 var other_fish_scenes = [
@@ -12,6 +13,7 @@ var other_fish_scenes = [
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Events.player_wriggled.connect(_on_player_wriggled)
+	Events.player_found_goal_fish.connect(_on_player_found_goal_fish)
 	
 	for i in range(0, fish_count):
 		var new_fish = other_fish_scenes.pick_random().instantiate()
@@ -20,11 +22,9 @@ func _ready():
 	Events.player_found_goal_fish.connect(_on_player_found_goal_fish)
 
 func _on_player_found_goal_fish(_d: Dictionary):
-	$CanvasLayer.visible = true
-	$Camera3D.target = $GoalFish
+	camera_3d.target = $GoalFish
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _on_player_wriggled(pos:Dictionary):
 	var scene = BUBBLE.instantiate()
 	self.add_child(scene)
