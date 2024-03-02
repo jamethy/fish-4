@@ -1,21 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3fiuxx6srntl"]
+[gd_scene load_steps=8 format=3 uid="uid://d3fiuxx6srntl"]
 
 [ext_resource type="Texture2D" uid="uid://dafm0canr7uy2" path="res://Assets/Test Tile Textures/texture_01.svg" id="1_kua01"]
 [ext_resource type="PackedScene" uid="uid://ua1b473dkgkh" path="res://Player/player.tscn" id="2_rc6cb"]
+[ext_resource type="Script" path="res://Player/player_camera.gd" id="3_ggqbw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_28j67"]
 albedo_texture = ExtResource("1_kua01")
 uv1_triplanar = true
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pioxt"]
+
+[sub_resource type="Sky" id="Sky_7kv2v"]
+sky_material = SubResource("ProceduralSkyMaterial_pioxt")
+
+[sub_resource type="Environment" id="Environment_d1hp7"]
+background_mode = 2
+sky = SubResource("Sky_7kv2v")
+ambient_light_color = Color(0.498039, 0.498039, 0.498039, 1)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-use_collision = true
-size = Vector3(20, 1, 20)
-material = SubResource("StandardMaterial3D_28j67")
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, 0)
 use_collision = true
 size = Vector3(20, 1, 20)
 material = SubResource("StandardMaterial3D_28j67")
@@ -34,3 +39,13 @@ material = SubResource("StandardMaterial3D_28j67")
 
 [node name="Player" parent="." instance=ExtResource("2_rc6cb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_d1hp7")
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 0.894428, 0.447211, 0, -0.447211, 0.894428, 0, 1.99999, 1.99999)
+script = ExtResource("3_ggqbw")
+lerp_speed = 0.3
+target = NodePath("../Player")
+offset = Vector3(0, 1, 2)

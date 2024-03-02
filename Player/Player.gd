@@ -2,10 +2,12 @@ extends CharacterBody3D
 
 @onready var mesh_instance_3d = $MeshInstance3D
 @onready var collision_shape_3d = $CollisionShape3D
-@onready var camera = $Camera3D
+@onready var camera = $SpringArm3D/Camera3D
 
+#Speed Variables
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+var has_burst = true
 
 #Input Variables
 var direction = Vector3.ZERO
@@ -24,8 +26,8 @@ func _ready():
 func _input(event):
 	if event is InputEventMouseMotion:
 		rotate_y(deg_to_rad(event.relative.x * mouse_sensitivity * -1))
-		camera.rotate_x(deg_to_rad(event.relative.y * mouse_sensitivity * -1))
-		camera.rotation.x = clamp(camera.rotation.x,deg_to_rad(-89),deg_to_rad(89))
+		#camera.rotate_x(deg_to_rad(event.relative.y * mouse_sensitivity * -1))
+		#camera.rotation.x = clamp(camera.rotation.x,deg_to_rad(-89),deg_to_rad(89))
 
 
 func _physics_process(delta):
@@ -34,9 +36,13 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		#velocity.y = JUMP_VELOCITY
 
+	# Handle Burst
+	if Input.is_action_just_pressed("Burst") and has_burst:
+		pass
+	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("Left", "Right", "Forward", "Backward")
