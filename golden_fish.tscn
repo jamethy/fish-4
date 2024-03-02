@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bns62i43p2yrx"]
+
+[ext_resource type="PackedScene" uid="uid://cng2ri7lt73hq" path="res://Assets/FishV4/FishV4.gltf" id="1_v853b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gesja"]
+albedo_color = Color(1, 0.807843, 0.0313726, 1)
+metallic = 1.0
+
+[node name="Root Scene" instance=ExtResource("1_v853b")]
+
+[node name="FishV4" parent="RootNode" index="0"]
+material_override = SubResource("StandardMaterial3D_gesja")

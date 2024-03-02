@@ -73,7 +73,7 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
-	# todo why can't I trust velocity
+	# TODO why can't I trust velocity
 	var previous_pos = position
 	move_and_slide()
 	
@@ -84,4 +84,6 @@ func _physics_process(delta):
 	for i in get_slide_collision_count():
 		var c = get_slide_collision(i)
 		if c.get_collider() is RigidBody3D:
+			if c.get_collider().name == "GoalFish":
+				Events.emit("player_found_goal_fish")
 			c.get_collider().apply_central_impulse(-c.get_normal() * speed * fish_impact_force)
