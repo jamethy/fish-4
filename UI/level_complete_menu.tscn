@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://be6xm0nuj6sko"]
+
+[ext_resource type="Script" path="res://UI/level_complete_menu.gd" id="1_5wrhj"]
+[ext_resource type="Theme" uid="uid://4g6adh7plvly" path="res://UI/Theme.tres" id="1_uu767"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l2n07"]
+bg_color = Color(0.756863, 0.65098, 0.266667, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.996078, 0.184314, 0.184314, 1)
+
+[node name="LevelCompleteMenu" type="PanelContainer"]
+custom_minimum_size = Vector2(300, 100)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -140.0
+offset_right = 150.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_uu767")
+theme_override_styles/panel = SubResource("StyleBoxFlat_l2n07")
+script = ExtResource("1_5wrhj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "You found the fish!"
+horizontal_alignment = 1
+
+[node name="NextLevelButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Next Level"
+
+[connection signal="pressed" from="VBoxContainer/NextLevelButton" to="." method="_on_next_level_button_pressed"]

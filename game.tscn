@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://dbr356jchwtik"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_kv4yy"]
+[ext_resource type="PackedScene" uid="uid://xfy7c67g5bue" path="res://UI/in_game_menu.tscn" id="2_7r0k7"]
+[ext_resource type="Theme" uid="uid://4g6adh7plvly" path="res://UI/Theme.tres" id="2_yp77h"]
+[ext_resource type="PackedScene" uid="uid://be6xm0nuj6sko" path="res://UI/level_complete_menu.tscn" id="4_wq1xh"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_kv4yy")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Loading" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+theme = ExtResource("2_yp77h")
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Loading"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LoadingLabel" type="Label" parent="CanvasLayer/Loading/CenterContainer"]
+layout_mode = 2
+text = "LOADING"
+
+[node name="InGameMenu" parent="CanvasLayer" instance=ExtResource("2_7r0k7")]
+visible = false
+
+[node name="LevelCompleteMenu" parent="CanvasLayer" instance=ExtResource("4_wq1xh")]
+visible = false
+
+[connection signal="next_level_button_pressed" from="CanvasLayer/LevelCompleteMenu" to="." method="_on_level_complete_menu_next_level_button_pressed"]
