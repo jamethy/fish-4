@@ -1,30 +1,33 @@
-[gd_scene load_steps=16 format=3 uid="uid://vl7528w02p5u"]
+[gd_scene load_steps=20 format=3 uid="uid://vl7528w02p5u"]
 
 [ext_resource type="Script" path="res://Scenes/level_2.gd" id="1_twths"]
+[ext_resource type="Material" uid="uid://cheeefh1plo16" path="res://Scenes/materials_wet_pebbles.tres" id="2_oyroa"]
 [ext_resource type="Texture2D" uid="uid://dafm0canr7uy2" path="res://Assets/Test Tile Textures/texture_01.svg" id="3_m4ovj"]
 [ext_resource type="Material" uid="uid://rle31l6jxh8k" path="res://Obstacles/material_glass.tres" id="3_vjse6"]
 [ext_resource type="PackedScene" uid="uid://ua1b473dkgkh" path="res://Player/player.tscn" id="4_f2ipx"]
-[ext_resource type="Texture2D" uid="uid://c42edcfhocd3r" path="res://Assets/Hdri/poly_haven_studio_8k.hdr" id="5_5c65h"]
+[ext_resource type="Texture2D" uid="uid://c8baqtb2n3d5o" path="res://Assets/Hdri/poly_haven_studio.hdr" id="5_ok5fe"]
 [ext_resource type="PackedScene" uid="uid://btweclvwdaubh" path="res://Obstacles/coral1.tscn" id="5_pnrj1"]
 [ext_resource type="PackedScene" uid="uid://bgvg735kdpkgt" path="res://goal_fish.tscn" id="6_acpdv"]
 [ext_resource type="PackedScene" uid="uid://cl8ixxwobx73a" path="res://Obstacles/coral2.tscn" id="7_pcvvk"]
 [ext_resource type="PackedScene" uid="uid://bjt68ujlrt4lv" path="res://Obstacles/coral-4.tscn" id="8_ikixk"]
 [ext_resource type="PackedScene" uid="uid://de1ollje6u46c" path="res://Player/player_camera.tscn" id="8_v4dlt"]
 [ext_resource type="PackedScene" uid="uid://1adhmeiw3spt" path="res://Obstacles/coral-3.tscn" id="9_tdp23"]
+[ext_resource type="PackedScene" uid="uid://dc05f1reajbe5" path="res://Obstacles/coral-3_purple.tscn" id="13_w5obr"]
+[ext_resource type="Material" uid="uid://jcob7waywdp3" path="res://Scenes/materials_wet_pebbles_2.tres" id="14_l3jqt"]
+[ext_resource type="PackedScene" uid="uid://5toxvhrfoujf" path="res://Obstacles/coral-4_Green.tscn" id="15_gjcxs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_28j67"]
 albedo_texture = ExtResource("3_m4ovj")
 uv1_triplanar = true
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_p3bxf"]
-panorama = ExtResource("5_5c65h")
+panorama = ExtResource("5_ok5fe")
 
 [sub_resource type="Sky" id="Sky_7kv2v"]
 sky_material = SubResource("PanoramaSkyMaterial_p3bxf")
 
 [sub_resource type="Environment" id="Environment_d1hp7"]
 background_mode = 2
-background_energy_multiplier = 2.2
 sky = SubResource("Sky_7kv2v")
 ambient_light_color = Color(0.619608, 0.756863, 0.788235, 1)
 ambient_light_sky_contribution = 0.2
@@ -32,6 +35,10 @@ ambient_light_energy = 0.31
 ssao_enabled = true
 ssil_enabled = true
 sdfgi_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+volumetric_fog_emission_energy = 60.08
+volumetric_fog_anisotropy = -0.21
 
 [node name="test-scene" type="Node3D"]
 script = ExtResource("1_twths")
@@ -41,7 +48,7 @@ use_collision = true
 collision_layer = 4
 collision_mask = 4
 size = Vector3(20, 1, 50)
-material = SubResource("StandardMaterial3D_28j67")
+material = ExtResource("2_oyroa")
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)
@@ -92,7 +99,7 @@ size = Vector3(50, 20, 0.1)
 material = ExtResource("3_vjse6")
 
 [node name="Player" parent="." instance=ExtResource("4_f2ipx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, -20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9, 1.3, -23)
 SPEED = 12.0
 burst_velocity = 24.0
 bubble_timout = 3.5
@@ -101,10 +108,10 @@ bubble_timout = 3.5
 environment = SubResource("Environment_d1hp7")
 
 [node name="GoalFish" parent="." instance=ExtResource("6_acpdv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 4, 20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 3.2, 22.2)
 
 [node name="Camera3D" parent="." node_paths=PackedStringArray("target") instance=ExtResource("8_v4dlt")]
-transform = Transform3D(-1, 3.90967e-08, -7.81933e-08, 0, 0.894427, 0.447214, 8.74228e-08, 0.447214, -0.894427, 0, 2.3, -2)
+transform = Transform3D(-1, 3.90967e-08, -7.81933e-08, 0, 0.894427, 0.447214, 8.74228e-08, 0.447214, -0.894427, 0, 2.3, -21)
 current = true
 target = NodePath("../Player")
 offset = Vector3(0, 1, -2)
@@ -115,14 +122,47 @@ sky_mode = 2
 [node name="Coral" parent="." instance=ExtResource("5_pnrj1")]
 transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 6, 1, -21)
 
+[node name="Coral10" parent="." instance=ExtResource("5_pnrj1")]
+transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 3, 1, -11)
+
+[node name="Coral18" parent="." instance=ExtResource("5_pnrj1")]
+transform = Transform3D(0.470304, -0.362414, -0.0864338, 0.372531, 0.459627, 0.0998194, 0.00591893, -0.131908, 0.585291, -7.6, 1, 3.9)
+
+[node name="Coral20" parent="." instance=ExtResource("5_pnrj1")]
+transform = Transform3D(0.726778, 0.345807, 0.091161, -0.351995, 0.728193, 0.0439666, -0.0631839, -0.0790646, 0.803652, 0.2, 1.6, 23.7)
+
 [node name="Coral2" parent="." instance=ExtResource("7_pcvvk")]
 transform = Transform3D(-0.7, 0, -1.21244, 0, 1.4, 0, 1.21244, 0, -0.7, 4.8, 1.3, -21.9)
 
 [node name="Coral3" parent="." instance=ExtResource("7_pcvvk")]
 transform = Transform3D(-1.96083, 0, -0.525403, 0, 2.03, 0, 0.525403, 0, -1.96083, 5.8, 1.6, -22.9)
 
+[node name="Coral14" parent="." instance=ExtResource("7_pcvvk")]
+transform = Transform3D(-5.49032, 0, -1.47113, 0, 5.684, 0, 1.47113, 0, -5.49032, -1.6, 2.3, -15)
+
+[node name="Coral29" parent="." instance=ExtResource("7_pcvvk")]
+transform = Transform3D(3.65361, 0, -4.3542, 0, 5.684, 0, 4.3542, 0, 3.65361, 4.9, 2.3, -10.8)
+
+[node name="Coral30" parent="." instance=ExtResource("7_pcvvk")]
+transform = Transform3D(3.65361, 0, -4.3542, 0, 5.684, 0, 4.3542, 0, 3.65361, 4.9, 2.3, -10.8)
+
+[node name="Coral19" parent="." instance=ExtResource("7_pcvvk")]
+transform = Transform3D(6.03936, -2.73301e-07, -1.61824, -1.41471e-07, -6.2524, 5.27977e-07, -1.61824, -4.73371e-07, -6.03936, -0.3, -0.7, 17.2)
+
+[node name="Coral27" parent="." instance=ExtResource("7_pcvvk")]
+transform = Transform3D(-3.24114, -5.33457, 0.360523, 5.34674, -3.23385, 0.217221, 0.00113486, 0.420904, 6.23822, 5.8, 0.1, 18.6)
+
 [node name="Coral4" parent="." instance=ExtResource("8_ikixk")]
 transform = Transform3D(-1.4534e-08, 0, -0.3325, 0, 0.3325, 0, 0.3325, 0, -1.4534e-08, 6.3, 0.7, -18.9)
+
+[node name="Coral11" parent="." instance=ExtResource("8_ikixk")]
+transform = Transform3D(-0.312448, 0, -0.113722, 0, 0.3325, 0, 0.113722, 0, -0.312448, 2, 0.6, -9.6)
+
+[node name="Coral22" parent="." instance=ExtResource("8_ikixk")]
+transform = Transform3D(0.327449, 0, -0.057738, 0, 0.3325, 0, 0.057738, 0, 0.327449, 0.5, 0.6, 19)
+
+[node name="Coral23" parent="." instance=ExtResource("8_ikixk")]
+transform = Transform3D(-0.113722, 0, 0.312448, 0, 0.3325, 0, -0.312448, 0, -0.113722, 1, 0.6, 23)
 
 [node name="Coral5" parent="." instance=ExtResource("7_pcvvk")]
 transform = Transform3D(-0.0871556, 0, -0.996195, 0, 1, 0, 0.996195, 0, -0.0871556, 5, 1.1, -20.3)
@@ -133,5 +173,49 @@ transform = Transform3D(-0.860365, 0, 1.22873, 0, 1.5, 0, -1.22873, 0, -0.860365
 [node name="Coral8" parent="." instance=ExtResource("7_pcvvk")]
 transform = Transform3D(3.13801, 0, 0.27454, 0, 3.15, 0, -0.27454, 0, 3.13801, -4.8, 1.7, -20.2)
 
+[node name="Coral9" parent="." instance=ExtResource("7_pcvvk")]
+transform = Transform3D(-5.1303, 0, 14.0954, 0, 15, 0, -14.0954, 0, -5.1303, -0.8, 6.7, 2.1)
+
 [node name="Coral7" parent="." instance=ExtResource("9_tdp23")]
 transform = Transform3D(0.0871558, 0, -0.996195, 0, 1, 0, 0.996195, 0, 0.0871558, -4.8, 1.1, -22.2)
+
+[node name="Coral12" parent="." instance=ExtResource("9_tdp23")]
+transform = Transform3D(-1.15499, -0.35, -0.709582, 0.061009, 1.21244, -0.697336, 0.78885, -0.606218, -0.984996, -8.6, 0.7, -9)
+
+[node name="Coral15" parent="." instance=ExtResource("9_tdp23")]
+transform = Transform3D(-0.59209, 0.128518, 0.581818, 0.0826648, 0.830013, -0.0992183, -0.590081, -0.012679, -0.597698, -1.9, 1.9, -15.9)
+coral_damage = 1
+
+[node name="Coral25" parent="." instance=ExtResource("9_tdp23")]
+transform = Transform3D(-0.756458, 1.42335, 0.716624, -0.305213, 0.649174, -1.61156, -1.56407, -0.815078, -0.0321143, 5.6, 2.4, 3.1)
+coral_damage = 1
+
+[node name="Coral13" parent="." instance=ExtResource("9_tdp23")]
+transform = Transform3D(-1.15499, -0.35, -0.709582, 0.061009, 1.21244, -0.697336, 0.78885, -0.606218, -0.984996, -8.6, 0.7, -22.9)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 45.0
+one_shot = true
+
+[node name="Coral16" parent="." instance=ExtResource("13_w5obr")]
+transform = Transform3D(0.243108, 0, -1.37873, 0, 1.4, 0, 1.37873, 0, 0.243108, 2.9, 1.1, -3)
+
+[node name="Coral28" parent="." instance=ExtResource("13_w5obr")]
+transform = Transform3D(1.37873, 0, 0.243108, 0.139441, 1.14681, -0.790808, -0.199142, 0.803007, 1.12939, -0.8, 3.6, 16.2)
+
+[node name="Coral17" parent="." instance=ExtResource("13_w5obr")]
+transform = Transform3D(0.097243, 0, -0.551492, 0, 0.56, 0, 0.551492, 0, 0.097243, 0.6, 1.1, -16.3)
+
+[node name="Coral21" parent="." instance=ExtResource("13_w5obr")]
+transform = Transform3D(-0.557869, 0, -0.0488072, 0, 0.56, 0, 0.0488072, 0, -0.557869, -6.4, 0.8, 4.8)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(0.85575, -0.350858, 0.971514, 0.58466, 0.921059, 0.243405, -1.41009, 0.168967, 0.690509, 6.6, -0.1, 22.1)
+material_override = ExtResource("14_l3jqt")
+radius = 2.286
+
+[node name="Coral24" parent="." instance=ExtResource("15_gjcxs")]
+transform = Transform3D(-0.492404, 0, -0.0868241, 0, 0.5, 0, 0.0868241, 0, -0.492404, 4.5, 0.7, 11.2)
+
+[node name="Coral26" parent="." instance=ExtResource("15_gjcxs")]
+transform = Transform3D(-0.086824, 0, -0.492404, 0, 0.5, 0, 0.492404, 0, -0.086824, -8.8, 0.7, 16.9)

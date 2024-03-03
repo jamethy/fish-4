@@ -1,0 +1,24 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://jcob7waywdp3"]
+
+[ext_resource type="Texture2D" uid="uid://dgvbixjhdyhj8" path="res://Assets/Textures/Wet Pebbles2/Ground_Wet_Rocks_002_basecolor.jpg" id="1_ykv2i"]
+[ext_resource type="Texture2D" uid="uid://dndj00jqrjowx" path="res://Assets/Textures/Wet Pebbles2/Ground_Wet_Rocks_002_ambientOcclusion.jpg" id="2_mbew5"]
+[ext_resource type="Texture2D" uid="uid://c6rcvk8xcnska" path="res://Assets/Textures/Wet Pebbles2/Ground_Wet_Rocks_002_height.png" id="3_m341w"]
+[ext_resource type="Texture2D" uid="uid://cuo1ngf31cp80" path="res://Assets/Textures/Wet Pebbles2/Ground_Wet_Rocks_002_normal.jpg" id="4_5xnua"]
+[ext_resource type="Texture2D" uid="uid://tkgxau5w28u0" path="res://Assets/Textures/Wet Pebbles2/Ground_Wet_Rocks_002_roughness.jpg" id="5_f8n66"]
+
+[resource]
+albedo_color = Color(0.458824, 0.458824, 0.458824, 1)
+albedo_texture = ExtResource("1_ykv2i")
+roughness = 0.29
+roughness_texture = ExtResource("5_f8n66")
+normal_enabled = true
+normal_scale = 2.74
+normal_texture = ExtResource("4_5xnua")
+ao_enabled = true
+ao_light_affect = 0.1
+ao_texture = ExtResource("2_mbew5")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_m341w")
+uv1_scale = Vector3(2, 2, 2)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 1.7411
