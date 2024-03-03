@@ -1,8 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://vl7528w02p5u"]
+[gd_scene load_steps=16 format=3 uid="uid://vl7528w02p5u"]
 
 [ext_resource type="Script" path="res://Scenes/level_2.gd" id="1_twths"]
 [ext_resource type="Texture2D" uid="uid://dafm0canr7uy2" path="res://Assets/Test Tile Textures/texture_01.svg" id="3_m4ovj"]
+[ext_resource type="Material" uid="uid://rle31l6jxh8k" path="res://Obstacles/material_glass.tres" id="3_vjse6"]
 [ext_resource type="PackedScene" uid="uid://ua1b473dkgkh" path="res://Player/player.tscn" id="4_f2ipx"]
+[ext_resource type="Texture2D" uid="uid://c42edcfhocd3r" path="res://Assets/Hdri/poly_haven_studio_8k.hdr" id="5_5c65h"]
 [ext_resource type="PackedScene" uid="uid://btweclvwdaubh" path="res://Obstacles/coral1.tscn" id="5_pnrj1"]
 [ext_resource type="PackedScene" uid="uid://bgvg735kdpkgt" path="res://goal_fish.tscn" id="6_acpdv"]
 [ext_resource type="PackedScene" uid="uid://cl8ixxwobx73a" path="res://Obstacles/coral2.tscn" id="7_pcvvk"]
@@ -14,16 +16,22 @@
 albedo_texture = ExtResource("3_m4ovj")
 uv1_triplanar = true
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pioxt"]
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_p3bxf"]
+panorama = ExtResource("5_5c65h")
 
 [sub_resource type="Sky" id="Sky_7kv2v"]
-sky_material = SubResource("ProceduralSkyMaterial_pioxt")
+sky_material = SubResource("PanoramaSkyMaterial_p3bxf")
 
 [sub_resource type="Environment" id="Environment_d1hp7"]
 background_mode = 2
 background_energy_multiplier = 2.2
 sky = SubResource("Sky_7kv2v")
-ambient_light_color = Color(0.498039, 0.498039, 0.498039, 1)
+ambient_light_color = Color(0.619608, 0.756863, 0.788235, 1)
+ambient_light_sky_contribution = 0.2
+ambient_light_energy = 0.31
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
 
 [node name="test-scene" type="Node3D"]
 script = ExtResource("1_twths")
@@ -32,43 +40,64 @@ script = ExtResource("1_twths")
 use_collision = true
 collision_layer = 4
 collision_mask = 4
-size = Vector3(25, 1, 25)
+size = Vector3(20, 1, 50)
+material = SubResource("StandardMaterial3D_28j67")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)
+use_collision = true
+collision_layer = 4
+collision_mask = 4
+size = Vector3(100, 1, 100)
+material = SubResource("StandardMaterial3D_28j67")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20.5, 0)
+visible = false
+use_collision = true
+collision_layer = 4
+collision_mask = 4
+size = Vector3(20, 1, 50)
 material = SubResource("StandardMaterial3D_28j67")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(2.98023e-08, -1, 0, 1, 2.98023e-08, 0, 0, 0, 1, -12.5, 3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 25)
+visible = false
 use_collision = true
 collision_layer = 4
 collision_mask = 4
-size = Vector3(8, 1, 25)
-material = SubResource("StandardMaterial3D_28j67")
+size = Vector3(20, 20, 0.1)
+material = ExtResource("3_vjse6")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="."]
-transform = Transform3D(2.98023e-08, -1, 0, 1, 2.98023e-08, 0, 0, 0, 1, 12, 3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -25)
+visible = false
 use_collision = true
 collision_layer = 4
 collision_mask = 4
-size = Vector3(8, 1, 25)
-material = SubResource("StandardMaterial3D_28j67")
+size = Vector3(20, 20, 0.1)
+material = ExtResource("3_vjse6")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="."]
-transform = Transform3D(-1.3027e-15, 4.37114e-08, 1, 1, 2.98023e-08, 0, -2.98023e-08, 1, -4.37114e-08, -1, 3, 13)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 10, 10, 1.14739e-06)
+visible = false
 use_collision = true
 collision_layer = 4
 collision_mask = 4
-size = Vector3(8, 1, 25)
-material = SubResource("StandardMaterial3D_28j67")
+size = Vector3(50, 20, 0.1)
+material = ExtResource("3_vjse6")
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="."]
-transform = Transform3D(-1.3027e-15, 4.37114e-08, 1, 1, 2.98023e-08, 0, -2.98023e-08, 1, -4.37114e-08, -1, 3, -13)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10, 10, 1.14739e-06)
+visible = false
 use_collision = true
 collision_layer = 4
 collision_mask = 4
-size = Vector3(8, 1, 25)
-material = SubResource("StandardMaterial3D_28j67")
+size = Vector3(50, 20, 0.1)
+material = ExtResource("3_vjse6")
 
 [node name="Player" parent="." instance=ExtResource("4_f2ipx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, -20)
 SPEED = 12.0
 burst_velocity = 24.0
 bubble_timout = 3.5
@@ -76,20 +105,8 @@ bubble_timout = 3.5
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_d1hp7")
 
-[node name="Coral" parent="." instance=ExtResource("5_pnrj1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.93107, 0.573567, -3.3454)
-
-[node name="Coral2" parent="." instance=ExtResource("5_pnrj1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.86893, 0.573567, -3.3454)
-
-[node name="Coral3" parent="." instance=ExtResource("5_pnrj1")]
-transform = Transform3D(2.1, 0, 0, 0, 2.1, 0, 0, 0, 2.1, -3.43107, 1.37357, 4.6546)
-
 [node name="GoalFish" parent="." instance=ExtResource("6_acpdv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 4, 9)
-
-[node name="Coral4" parent="." instance=ExtResource("7_pcvvk")]
-transform = Transform3D(2.47, 0, 0, 0, 2.47, 0, 0, 0, 2.47, 0.9, 1.8, 7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 4, 20)
 
 [node name="Camera3D" parent="." node_paths=PackedStringArray("target") instance=ExtResource("8_v4dlt")]
 transform = Transform3D(-1, 3.90967e-08, -7.81933e-08, 0, 0.894427, 0.447214, 8.74228e-08, 0.447214, -0.894427, 0, 2.3, -2)
@@ -97,8 +114,29 @@ current = true
 target = NodePath("../Player")
 offset = Vector3(0, 1, -2)
 
-[node name="Coral5" parent="." instance=ExtResource("8_ikixk")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 4, 1, -6.6)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+sky_mode = 2
 
-[node name="Coral6" parent="." instance=ExtResource("9_tdp23")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -5)
+[node name="Coral" parent="." instance=ExtResource("5_pnrj1")]
+transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 6, 1, -21)
+
+[node name="Coral2" parent="." instance=ExtResource("7_pcvvk")]
+transform = Transform3D(-0.7, 0, -1.21244, 0, 1.4, 0, 1.21244, 0, -0.7, 4.8, 1.3, -21.9)
+
+[node name="Coral3" parent="." instance=ExtResource("7_pcvvk")]
+transform = Transform3D(-1.96083, 0, -0.525403, 0, 2.03, 0, 0.525403, 0, -1.96083, 5.8, 1.6, -22.9)
+
+[node name="Coral4" parent="." instance=ExtResource("8_ikixk")]
+transform = Transform3D(-1.4534e-08, 0, -0.3325, 0, 0.3325, 0, 0.3325, 0, -1.4534e-08, 6.3, 0.7, -18.9)
+
+[node name="Coral5" parent="." instance=ExtResource("7_pcvvk")]
+transform = Transform3D(-0.0871556, 0, -0.996195, 0, 1, 0, 0.996195, 0, -0.0871556, 5, 1.1, -20.3)
+
+[node name="Coral6" parent="." instance=ExtResource("7_pcvvk")]
+transform = Transform3D(-0.860365, 0, 1.22873, 0, 1.5, 0, -1.22873, 0, -0.860365, 5.6, 1.1, -18.9)
+
+[node name="Coral8" parent="." instance=ExtResource("7_pcvvk")]
+transform = Transform3D(3.13801, 0, 0.27454, 0, 3.15, 0, -0.27454, 0, 3.13801, -4.8, 1.7, -20.2)
+
+[node name="Coral7" parent="." instance=ExtResource("9_tdp23")]
+transform = Transform3D(0.0871558, 0, -0.996195, 0, 1, 0, 0.996195, 0, 0.0871558, -4.8, 1.1, -22.2)

@@ -20,6 +20,11 @@ config/icon="res://icon.svg"
 Events="*res://events.gd"
 Effects="*res://Audio/effect_manager.gd"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
 [input]
 
 Forward={

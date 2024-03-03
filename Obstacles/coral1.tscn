@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Obstacles/coral.gd" id="1_00ffh"]
 [ext_resource type="PackedScene" uid="uid://d2o0f0u7ivfga" path="res://Assets/Corals/Coral1.glb" id="2_a2h4w"]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_a6dn3"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5pj6a"]
 points = PackedVector3Array(0.00967042, -0.0198587, 0.0148848, -0.0301532, 0.0133201, 0.00382081, -0.0301532, 0.0133201, 0.00603362, 0.030696, 0.0288077, -0.00833636, 0.0107783, 0.0288077, 0.0237361, -0.00691778, -0.032027, -0.00612886, -0.00913351, 0.0254885, -0.0194057, -0.0102354, -0.0242797, 0.0248451, 0.00746064, 0.0133201, -0.0271532, -0.00913351, 0.0354462, -0.00391605, -0.0179786, -0.0264903, -0.00502511, 0.0284803, 0.0144289, 0.0148848, -0.000276546, -0.0342375, -0.00391605, -0.00249228, 0.0221692, 0.0248451, -0.0246198, 0.0199587, -0.0116635, -0.00138441, -0.0220692, 0.0270579, -0.0201943, -0.027599, 0.0137811, 0.0196293, 0.0332357, 0.012672, -0.000276546, 0.0354462, -0.0116635, -0.0146609, 0.0310183, 0.00382081, 0.004143, 0.0166394, -0.0271532, 0.0295882, 0.0254885, -0.00945072, -0.00802565, -0.0353462, 0.00160801, 0.00746064, -0.0231779, 0.0193105, 0.0284803, 0.0133271, 0.0104592, -0.0290453, 0.0166394, 0.00714268, 0.0207312, 0.0111096, 0.0204142, -0.0135531, -0.0253885, -0.00834166, -0.0224041, -0.0242797, 0.00935548, -0.00691778, -0.0187499, 0.0270579, 0.004143, 0.0133201, -0.0271532, -0.00249228, -0.0264903, 0.0226323)
 
 [node name="Coral" type="StaticBody3D"]
@@ -15,21 +15,18 @@ script = ExtResource("1_00ffh")
 [node name="Coral1" parent="." instance=ExtResource("2_a2h4w")]
 transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0.1, -0.5, -0.2)
 
-[node name="Coral1" parent="Coral1" index="0"]
-transform = Transform3D(16.3059, 0, 0, 0, 16.3059, 0, 0, 0, 16.3059, 0, 0.321049, 0)
-
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0.4, 0)
 collision_layer = 4
 collision_mask = 5
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(29.3506, 0, 0, 0, 29.3506, 0, 0, 0, 29.3506, 0.2, -0.322111, -0.2)
-shape = SubResource("ConvexPolygonShape3D_a6dn3")
+transform = Transform3D(90, 0, 0, 0, 90, 0, 0, 0, 90, 0.2, 0.425558, -1.03929)
+shape = SubResource("ConvexPolygonShape3D_5pj6a")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(29.3506, 0, 0, 0, 29.3506, 0, 0, 0, 29.3506, 0.1, 0.0778889, -0.2)
-shape = SubResource("ConvexPolygonShape3D_a6dn3")
+transform = Transform3D(90, 0, 0, 0, 90, 0, 0, 0, 90, 0.1, 0.825558, -1.03929)
+shape = SubResource("ConvexPolygonShape3D_5pj6a")
 
 [connection signal="body_shape_entered" from="Area3D" to="." method="_on_area_3d_body_shape_entered"]
 

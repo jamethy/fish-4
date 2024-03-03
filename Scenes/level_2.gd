@@ -12,7 +12,7 @@ var other_fish_scenes = [
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Events.player_wiggled.connect(_on_player_wiggled)
+	#Events.player_wiggled.connect(_on_player_wiggled)
 	Events.player_found_goal_fish.connect(_on_player_found_goal_fish)
 	
 	for i in range(0, fish_count):
@@ -25,7 +25,7 @@ func _on_player_found_goal_fish(_d: Dictionary):
 	camera_3d.target = $GoalFish
 
 
-func _on_player_wiggled(pos:Dictionary):
-	var scene = BUBBLE.instantiate()
-	self.add_child(scene)
-	scene.global_position =  pos["player_pos"]
+#func _on_player_wiggled(pos:Dictionary):
+	#var scene = BUBBLE.instantiate()
+	#self.add_child(scene)
+	#scene.global_position =  pos["player_pos"]
