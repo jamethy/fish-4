@@ -5,7 +5,9 @@ class_name Player
 @onready var fish_model = $FishModel
 @onready var i_frame_timer = $IFrameTimer
 @onready var animation_player = $AnimationPlayer
+@onready var audio_player = $AudioStreamPlayer3D
 
+const BUBBLE = preload("res://Player/bubble.tscn")
 
 #Speed Variables
 var lerp_speed = 8.0
@@ -106,10 +108,14 @@ func _physics_process(delta):
 func  _create_bubble():
 	has_bubble = false
 	bubble_count -= 1
-	Events.emit("player_wriggled",{"player_pos":self.global_position,"bubble_count":bubble_count})
-	#print("%s"% bubble_count)
+	Events.emit("player_wiggled",{"player_pos":self.global_position,"bubble_count":bubble_count})
+	animation_player.play("Wiggle")
 	bubble_timer.wait_time = bubble_timout
 	bubble_timer.start()
+	var scene = BUBBLE.instantiate()
+	self.add_child(scene)
+	Effects._play_fx()
+	
 
 func _on_bubble_timer_timeout():
 	has_bubble = true
@@ -122,10 +128,12 @@ func _set_health():
 func _update_health(d:Dictionary):
 	if i_frame_timer.is_stopped():
 		i_frame_timer.start()
-		
 		health_current -= d.damage
 		animation_player.play("damage")
-		velocity.z = -1 * SPEED
+		var backward = global_transform.origin - (self.basis.z * 2)
+		var damage_tween = get_tree().create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
+		damage_tween.tween_property(self,"global_transform:origin",backward,.2)
 		Events.emit("player_health_changed",{"player_health":health_current})
 	
-	
+
+

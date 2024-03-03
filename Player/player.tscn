@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ua1b473dkgkh"]
+[gd_scene load_steps=13 format=3 uid="uid://ua1b473dkgkh"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_n87ny"]
 [ext_resource type="PackedScene" uid="uid://fxeu1jvy28rn" path="res://Assets/FishV1/FishV1.gltf" id="2_j08mt"]
@@ -9,8 +9,8 @@ height = 2.409
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bglvr"]
 points = PackedVector3Array(-1, 0, -2, 1, 0, -2, -1, 0, 2, 1, 0, 2, 0.5, 0.75, 1, -0.5, 0.75, 1, 0.5, 0.75, -1, -0.5, 0.75, -1)
 
-[sub_resource type="Animation" id="Animation_m8jgx"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_nq8nm"]
+resource_name = "reset"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6fmm"]
 transparency = 1
@@ -46,15 +46,96 @@ tracks/1/keys = {
 "values": [true, false, true, false, true, false, true, false, true]
 }
 
-[sub_resource type="Animation" id="Animation_nq8nm"]
-resource_name = "reset"
+[sub_resource type="Animation" id="Animation_m8jgx"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_qh1k2"]
+resource_name = "Wiggle"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -3.14159, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2fmi1"]
 _data = {
 "RESET": SubResource("Animation_m8jgx"),
+"Wiggle": SubResource("Animation_qh1k2"),
 "damage": SubResource("Animation_3d6v2"),
 "reset": SubResource("Animation_nq8nm")
 }
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k4yjx"]
+albedo_color = Color(0.921569, 0.756863, 0.45098, 1)
+emission_enabled = true
+emission = Color(0.8, 0.764706, 0.129412, 1)
+emission_energy_multiplier = 5.85
+
+[sub_resource type="SphereMesh" id="SphereMesh_mi6v0"]
+material = SubResource("StandardMaterial3D_k4yjx")
+radius = 0.05
+height = 0.1
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -83,6 +164,11 @@ libraries = {
 "": SubResource("AnimationLibrary_2fmi1")
 }
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 1.5)
+mesh = SubResource("SphereMesh_mi6v0")
+
 [connection signal="timeout" from="BubbleTimer" to="." method="_on_bubble_timer_timeout"]
+[connection signal="timeout" from="IFrameTimer" to="." method="_on_i_frame_timer_timeout"]
 
 [editable path="FishModel"]
