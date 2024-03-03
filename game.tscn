@@ -1,10 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://ds08v34uww8fg"]
+[gd_scene load_steps=7 format=3 uid="uid://dbr356jchwtik"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_kv4yy"]
-[ext_resource type="PackedScene" uid="uid://bn6ewwjy8ng6m" path="res://UI/in_game_menu.tscn" id="2_7r0k7"]
+[ext_resource type="PackedScene" uid="uid://dbsjqa35qgidl" path="res://UI/in_game_menu.tscn" id="2_7r0k7"]
 [ext_resource type="Theme" uid="uid://4g6adh7plvly" path="res://UI/Theme.tres" id="2_yp77h"]
-[ext_resource type="PackedScene" path="res://UI/level_complete_menu.tscn" id="4_wq1xh"]
-[ext_resource type="PackedScene" uid="uid://4u2i6u4k6pjm" path="res://UI/player_ui.tscn" id="5_5305u"]
+[ext_resource type="PackedScene" uid="uid://be6xm0nuj6sko" path="res://UI/level_complete_menu.tscn" id="4_wq1xh"]
+[ext_resource type="PackedScene" uid="uid://bf5mblylftb5n" path="res://UI/player_ui.tscn" id="5_5305u"]
 [ext_resource type="Script" path="res://LevelStartDisplay.gd" id="6_yoe00"]
 
 [node name="Game" type="Node"]
