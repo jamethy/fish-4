@@ -1,13 +1,24 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxphh6yxr71w1"]
+[gd_scene load_steps=15 format=3 uid="uid://bxphh6yxr71w1"]
 
 [ext_resource type="Script" path="res://Scenes/level_1.gd" id="1_ljs2u"]
 [ext_resource type="PackedScene" uid="uid://ua1b473dkgkh" path="res://Player/player.tscn" id="2_6lg0r"]
+[ext_resource type="Texture2D" uid="uid://c8baqtb2n3d5o" path="res://Assets/Hdri/poly_haven_studio.hdr" id="2_i5r1e"]
 [ext_resource type="PackedScene" uid="uid://de1ollje6u46c" path="res://Player/player_camera.tscn" id="3_i43rc"]
+[ext_resource type="Material" uid="uid://rle31l6jxh8k" path="res://Obstacles/material_glass.tres" id="4_i0rcf"]
 [ext_resource type="Texture2D" uid="uid://dafm0canr7uy2" path="res://Assets/Test Tile Textures/texture_01.svg" id="4_n8ncr"]
 [ext_resource type="PackedScene" uid="uid://bgvg735kdpkgt" path="res://goal_fish.tscn" id="5_kv2x8"]
+[ext_resource type="Material" path="res://Scenes/materials_wet_pebbles.tres" id="5_mlmvp"]
 [ext_resource type="Material" uid="uid://cik4ipio2grxs" path="res://Player/blank_wall_material.tres" id="5_u3bw8"]
 
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ybas7"]
+panorama = ExtResource("2_i5r1e")
+
+[sub_resource type="Sky" id="Sky_8i8we"]
+sky_material = SubResource("PanoramaSkyMaterial_ybas7")
+
 [sub_resource type="Environment" id="Environment_4d0ln"]
+background_mode = 2
+sky = SubResource("Sky_8i8we")
 ambient_light_color = Color(0.827938, 0.754442, 0.702014, 1)
 ambient_light_energy = 4.16
 volumetric_fog_enabled = true
@@ -77,7 +88,7 @@ transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.371
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Wall4"]
 size = Vector3(26.3149, 1, 25.9111)
-material = ExtResource("5_u3bw8")
+material = ExtResource("4_i0rcf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.112973)
@@ -87,7 +98,7 @@ shape = SubResource("BoxShape3D_ba813")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Floor"]
 size = Vector3(25, 1, 25)
-material = ExtResource("5_u3bw8")
+material = ExtResource("5_mlmvp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.112973)
@@ -111,3 +122,8 @@ mass = 100.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.124381, 0.992235, 0, -0.992235, -0.124381, 0, 13.6152, 0)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+autostart = true

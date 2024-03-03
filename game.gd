@@ -17,6 +17,19 @@ func _ready():
 		load_level(1)
 	else:
 		_after_level_loaded()
+		
+		
+func _process(delta: float):
+	_set_timer()
+
+
+func _set_timer():
+	var timer_node = get_node_or_null("Level/Timer")
+	if not timer_node:
+		return
+	var seconds = int(timer_node.time_left)
+	var sixtieth_seconds = int((timer_node.time_left - seconds) * 60)
+	$CanvasLayer/PlayerUI/TimerLabel.text = "%02.0f:%02.0f" % [seconds, sixtieth_seconds]
 
 func load_level(level: int):
 	$CanvasLayer/Loading.visible = true
@@ -48,6 +61,11 @@ func _after_level_loaded():
 	$CanvasLayer/PlayerUI.visible = true
 	$CanvasLayer/LevelStartDisplay.show_for_level_start(current_level)
 	_set_mouse(false)
+	var timer_node = get_node_or_null("Level/Timer")
+	$CanvasLayer/PlayerUI/TimerLabel.visible = timer_node != null
+	if timer_node:
+		timer_node.timeout.connect(_on_time_ran_out)
+		timer_node.start()
 
 
 func _unhandled_input(_event):
@@ -74,11 +92,17 @@ func _on_level_complete_menu_next_level_button_pressed():
 func _on_player_health_changed(d:Dictionary):
 	if d.player_health <= 0:
 		$CanvasLayer/GameOver.visible = true
+		var timer_node = get_node_or_null("Level/Timer")
+		if timer_node:
+			timer_node.paused = true
 
 
 func _on_player_found_goal_fish(_d: Dictionary):
 	$CanvasLayer/LevelCompleteMenu.visible = true
 	_set_mouse(true)
+	var timer_node = get_node_or_null("Level/Timer")
+	if timer_node:
+		timer_node.paused = true
 
 
 func _on_back_to_game_button_pressed():
@@ -94,3 +118,7 @@ func _on_exit_to_desktop_button_pressed():
 
 func _on_alstrainfinite_fish_button_pressed():
 	OS.shell_open("https://alstrainfinite.itch.io/fish")
+
+func _on_time_ran_out():
+	$CanvasLayer/GameOver.visible = true
+	_set_mouse(true)
