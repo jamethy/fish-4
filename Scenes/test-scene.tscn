@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://Scenes/test-scene.gd" id="1_5vkwr"]
 [ext_resource type="Texture2D" uid="uid://dafm0canr7uy2" path="res://Assets/Test Tile Textures/texture_01.svg" id="1_kua01"]
+[ext_resource type="PackedScene" uid="uid://dbr356jchwtik" path="res://game.tscn" id="1_q8b50"]
 [ext_resource type="PackedScene" uid="uid://ua1b473dkgkh" path="res://Player/player.tscn" id="2_rc6cb"]
 [ext_resource type="PackedScene" uid="uid://de1ollje6u46c" path="res://Player/player_camera.tscn" id="3_ohokl"]
 [ext_resource type="PackedScene" path="res://Obstacles/coral1.tscn" id="5_ui2i0"]
 [ext_resource type="PackedScene" uid="uid://bgvg735kdpkgt" path="res://goal_fish.tscn" id="6_sdkir"]
 [ext_resource type="PackedScene" path="res://Obstacles/coral2.tscn" id="7_dccaf"]
-[ext_resource type="PackedScene" uid="uid://bf5mblylftb5n" path="res://UI/player_ui.tscn" id="8_xi82a"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_28j67"]
 albedo_texture = ExtResource("1_kua01")
@@ -24,18 +24,22 @@ background_energy_multiplier = 2.2
 sky = SubResource("Sky_7kv2v")
 ambient_light_color = Color(0.498039, 0.498039, 0.498039, 1)
 
-[node name="test-scene" type="Node3D"]
+[node name="TestScene" type="Node"]
+
+[node name="Game" parent="." instance=ExtResource("1_q8b50")]
+
+[node name="test-scene" type="Node3D" parent="Game"]
 script = ExtResource("1_5vkwr")
 fish_count = 0
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="CSGBox3D" type="CSGBox3D" parent="Game/test-scene"]
 use_collision = true
 collision_layer = 4
 collision_mask = 4
 size = Vector3(25, 1, 25)
 material = SubResource("StandardMaterial3D_28j67")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Game/test-scene"]
 transform = Transform3D(2.98023e-08, -1, 0, 1, 2.98023e-08, 0, 0, 0, 1, -12.5, 3, 0)
 use_collision = true
 collision_layer = 4
@@ -43,7 +47,7 @@ collision_mask = 4
 size = Vector3(8, 1, 25)
 material = SubResource("StandardMaterial3D_28j67")
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+[node name="CSGBox3D3" type="CSGBox3D" parent="Game/test-scene"]
 transform = Transform3D(2.98023e-08, -1, 0, 1, 2.98023e-08, 0, 0, 0, 1, 12, 3, 0)
 use_collision = true
 collision_layer = 4
@@ -51,7 +55,7 @@ collision_mask = 4
 size = Vector3(8, 1, 25)
 material = SubResource("StandardMaterial3D_28j67")
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+[node name="CSGBox3D4" type="CSGBox3D" parent="Game/test-scene"]
 transform = Transform3D(-1.3027e-15, 4.37114e-08, 1, 1, 2.98023e-08, 0, -2.98023e-08, 1, -4.37114e-08, -1, 3, 13)
 use_collision = true
 collision_layer = 4
@@ -59,7 +63,7 @@ collision_mask = 4
 size = Vector3(8, 1, 25)
 material = SubResource("StandardMaterial3D_28j67")
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+[node name="CSGBox3D5" type="CSGBox3D" parent="Game/test-scene"]
 transform = Transform3D(-1.3027e-15, 4.37114e-08, 1, 1, 2.98023e-08, 0, -2.98023e-08, 1, -4.37114e-08, -1, 3, -13)
 use_collision = true
 collision_layer = 4
@@ -67,37 +71,32 @@ collision_mask = 4
 size = Vector3(8, 1, 25)
 material = SubResource("StandardMaterial3D_28j67")
 
-[node name="Player" parent="." instance=ExtResource("2_rc6cb")]
+[node name="Player" parent="Game/test-scene" instance=ExtResource("2_rc6cb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 SPEED = 12.0
 burst_velocity = 24.0
 bubble_timout = 3.5
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Game/test-scene"]
 environment = SubResource("Environment_d1hp7")
 
-[node name="Coral" parent="." instance=ExtResource("5_ui2i0")]
+[node name="Coral" parent="Game/test-scene" instance=ExtResource("5_ui2i0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.93107, 0.573567, -3.3454)
 
-[node name="Coral2" parent="." instance=ExtResource("5_ui2i0")]
+[node name="Coral2" parent="Game/test-scene" instance=ExtResource("5_ui2i0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.86893, 0.573567, -3.3454)
 
-[node name="Coral3" parent="." instance=ExtResource("5_ui2i0")]
+[node name="Coral3" parent="Game/test-scene" instance=ExtResource("5_ui2i0")]
 transform = Transform3D(2.1, 0, 0, 0, 2.1, 0, 0, 0, 2.1, -3.43107, 1.37357, 4.6546)
 
-[node name="GoalFish" parent="." instance=ExtResource("6_sdkir")]
+[node name="GoalFish" parent="Game/test-scene" instance=ExtResource("6_sdkir")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 4, 9)
 
-[node name="Coral4" parent="." instance=ExtResource("7_dccaf")]
+[node name="Coral4" parent="Game/test-scene" instance=ExtResource("7_dccaf")]
 transform = Transform3D(2.47, 0, 0, 0, 2.47, 0, 0, 0, 2.47, 0.9, 1.8, 7)
 
-[node name="Camera3D" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_ohokl")]
+[node name="Camera3D" parent="Game/test-scene" node_paths=PackedStringArray("target") instance=ExtResource("3_ohokl")]
 transform = Transform3D(-1, 3.90967e-08, -7.81933e-08, 0, 0.894427, 0.447214, 8.74228e-08, 0.447214, -0.894427, 0, 2.3, -2)
 current = true
 target = NodePath("../Player")
 offset = Vector3(0, 1, -2)
-
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="PlayerUI" parent="UI" instance=ExtResource("8_xi82a")]
-mouse_filter = 2

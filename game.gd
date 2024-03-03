@@ -7,7 +7,16 @@ func _ready():
 	Events.player_health_changed.connect(_on_player_health_changed)
 	Events.player_found_goal_fish.connect(_on_player_found_goal_fish)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	load_level(1)
+	
+	var has_level_already = false # for testing
+	for c in get_children():
+		if c as Node3D:
+			has_level_already = true
+			break
+	if not has_level_already:
+		load_level(1)
+	else:
+		_after_level_loaded()
 
 func load_level(level: int):
 	$CanvasLayer/Loading.visible = true
