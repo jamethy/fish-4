@@ -111,3 +111,8 @@ mass = 100.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.124381, 0.992235, 0, -0.992235, -0.124381, 0, 13.6152, 0)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+autostart = true

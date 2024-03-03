@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dafm0canr7uy2" path="res://Assets/Test Tile Textures/texture_01.svg" id="4_00efl"]
 [ext_resource type="Material" uid="uid://cik4ipio2grxs" path="res://Player/blank_wall_material.tres" id="4_w6tqp"]
 [ext_resource type="PackedScene" uid="uid://bgvg735kdpkgt" path="res://goal_fish.tscn" id="5_kak6c"]
-[ext_resource type="PackedScene" path="res://Obstacles/coral1.tscn" id="6_vj8nl"]
+[ext_resource type="PackedScene" uid="uid://btweclvwdaubh" path="res://Obstacles/coral1.tscn" id="6_vj8nl"]
 
 [sub_resource type="Environment" id="Environment_0ai1g"]
 background_energy_multiplier = 0.0
@@ -143,3 +143,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.33993, 0.573567, -10.4071)
 
 [node name="Coral6" parent="." instance=ExtResource("6_vj8nl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.93965, 0.573567, 9.05579)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+autostart = true
