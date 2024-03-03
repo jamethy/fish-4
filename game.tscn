@@ -87,6 +87,7 @@ layout_mode = 2
 text = "LOADING"
 
 [node name="Credits" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
