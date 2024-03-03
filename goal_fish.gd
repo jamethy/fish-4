@@ -25,6 +25,7 @@ func _physics_process(delta):
 	if not found:
 		return
 	
+	rotation = Vector3()
 	# rotate children because we don't want the camera to rotate
 	$CollisionShape3D.rotation.y += 2 * delta
 	$FishModel.rotation.y = $CollisionShape3D.rotation.y
