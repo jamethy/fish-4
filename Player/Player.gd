@@ -5,7 +5,6 @@ class_name Player
 @onready var fish_model = $FishModel
 @onready var i_frame_timer = $IFrameTimer
 @onready var animation_player = $AnimationPlayer
-@onready var audio_player = $AudioStreamPlayer3D
 
 const BUBBLE = preload("res://Player/bubble.tscn")
 
@@ -36,7 +35,6 @@ var has_bubble = true
 #Input Variables
 var direction = Vector3.ZERO
 var mouse_sensitivity = 0.2
-var input_dir:Vector2 = Vector2.ZERO
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -79,7 +77,7 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("Left", "Right", "Forward", "Backward")
-	var direction = lerp(direction ,(transform.basis * Vector3(input_dir.x, 0, -input_dir.y)).normalized(),delta*lerp_speed)
+	direction = lerp(direction ,(transform.basis * Vector3(input_dir.x, 0, -input_dir.y)).normalized(),delta*lerp_speed)
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED

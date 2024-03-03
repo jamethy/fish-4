@@ -9,43 +9,6 @@ height = 2.409
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bglvr"]
 points = PackedVector3Array(-1, 0, -2, 1, 0, -2, -1, 0, 2, 1, 0, 2, 0.5, 0.75, 1, -0.5, 0.75, 1, 0.5, 0.75, -1, -0.5, 0.75, -1)
 
-[sub_resource type="Animation" id="Animation_nq8nm"]
-resource_name = "reset"
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6fmm"]
-transparency = 1
-albedo_color = Color(1, 0, 0.266667, 0.607843)
-emission_enabled = true
-emission = Color(1, 0, 0.266667, 1)
-emission_energy_multiplier = 3.41
-
-[sub_resource type="Animation" id="Animation_3d6v2"]
-resource_name = "damage"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FishModel/RootNode/FishV1:surface_material_override/0")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [null, SubResource("StandardMaterial3D_s6fmm"), null]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("FishModel/RootNode/FishV1:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [true, false, true, false, true, false, true, false, true]
-}
-
 [sub_resource type="Animation" id="Animation_m8jgx"]
 length = 0.001
 tracks/0/type = "bezier"
@@ -117,6 +80,43 @@ tracks/2/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0, 0.5, 1)
 }
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6fmm"]
+transparency = 1
+albedo_color = Color(1, 0, 0.266667, 0.607843)
+emission_enabled = true
+emission = Color(1, 0, 0.266667, 1)
+emission_energy_multiplier = 3.41
+
+[sub_resource type="Animation" id="Animation_3d6v2"]
+resource_name = "damage"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FishModel/RootNode/FishV1:surface_material_override/0")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [null, SubResource("StandardMaterial3D_s6fmm"), null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FishModel/RootNode/FishV1:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_nq8nm"]
+resource_name = "reset"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2fmi1"]
 _data = {

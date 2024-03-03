@@ -1,7 +1,6 @@
 extends Control
 @onready var wiggle_count = $MarginContainer/HBoxContainer/VBoxContainer/WiggleCount
 @onready var health_count = $MarginContainer/HBoxContainer/VBoxContainer/HealthCount
-@onready var game_over = $GameOver
 @onready var heart_container = $MarginContainer/HBoxContainer/VBoxContainer/HeartContainer
 
 
