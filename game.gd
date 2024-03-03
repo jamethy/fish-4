@@ -29,6 +29,7 @@ func _load_level(level: int):
 	var current_level_node = get_node_or_null("Level")
 	if current_level_node != null:
 		remove_child(current_level_node)
+		current_level_node.queue_free()
 	var scene = load("res://Scenes/level_%d.tscn" % level)
 	if not scene:
 		$CanvasLayer/Loading.visible = false
