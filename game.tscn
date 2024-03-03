@@ -1,115 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbr356jchwtik"]
+[gd_scene load_steps=7 format=3 uid="uid://ds08v34uww8fg"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_kv4yy"]
+[ext_resource type="PackedScene" uid="uid://bn6ewwjy8ng6m" path="res://UI/in_game_menu.tscn" id="2_7r0k7"]
 [ext_resource type="Theme" uid="uid://4g6adh7plvly" path="res://UI/Theme.tres" id="2_yp77h"]
-[ext_resource type="PackedScene" uid="uid://be6xm0nuj6sko" path="res://UI/level_complete_menu.tscn" id="4_wq1xh"]
-[ext_resource type="PackedScene" uid="uid://bf5mblylftb5n" path="res://UI/player_ui.tscn" id="5_5305u"]
+[ext_resource type="PackedScene" path="res://UI/level_complete_menu.tscn" id="4_wq1xh"]
+[ext_resource type="PackedScene" uid="uid://4u2i6u4k6pjm" path="res://UI/player_ui.tscn" id="5_5305u"]
 [ext_resource type="Script" path="res://LevelStartDisplay.gd" id="6_yoe00"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_kv4yy")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="PlayerUI" parent="CanvasLayer" instance=ExtResource("5_5305u")]
-visible = false
-mouse_filter = 2
-
-[node name="GameOver" type="CenterContainer" parent="CanvasLayer"]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="CanvasLayer/GameOver"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 56
-text = "GAME OVER"
-
-[node name="LevelCompleteMenu" parent="CanvasLayer" instance=ExtResource("4_wq1xh")]
-visible = false
-
-[node name="InGameMenu" type="Control" parent="CanvasLayer"]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("2_yp77h")
-
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/InGameMenu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/InGameMenu/CenterContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="FishLabel" type="Label" parent="CanvasLayer/InGameMenu/CenterContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 50
-text = "FISH"
-horizontal_alignment = 1
-
-[node name="BackToGameButton" type="Button" parent="CanvasLayer/InGameMenu/CenterContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "Back"
-
-[node name="ExitToMainMenuButton" type="Button" parent="CanvasLayer/InGameMenu/CenterContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "Exit to Main Manu"
-
-[node name="ExitToDesktopButton" type="Button" parent="CanvasLayer/InGameMenu/CenterContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "Exit to Desktop"
-
-[node name="LevelStartDisplay" type="Control" parent="CanvasLayer"]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("2_yp77h")
-script = ExtResource("6_yoe00")
-
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/LevelStartDisplay"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/LevelStartDisplay/CenterContainer"]
-layout_mode = 2
-
-[node name="LevelStartLabel" type="Label" parent="CanvasLayer/LevelStartDisplay/CenterContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "LEVEL START"
-horizontal_alignment = 1
-
-[node name="InstructionsLabel" type="Label" parent="CanvasLayer/LevelStartDisplay/CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "Find the Fish!"
-horizontal_alignment = 1
-
-[node name="Timer" type="Timer" parent="CanvasLayer/LevelStartDisplay"]
-wait_time = 2.0
-one_shot = true
 
 [node name="Loading" type="Control" parent="CanvasLayer"]
 visible = false
@@ -134,7 +35,30 @@ grow_vertical = 2
 layout_mode = 2
 text = "LOADING"
 
-[node name="Credits" type="Control" parent="CanvasLayer"]
+[node name="LevelCompleteMenu" parent="CanvasLayer" instance=ExtResource("4_wq1xh")]
+visible = false
+
+[node name="PlayerUI" parent="CanvasLayer" instance=ExtResource("5_5305u")]
+visible = false
+mouse_filter = 2
+
+[node name="GameOver" type="CenterContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/GameOver"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 56
+text = "GAME OVER"
+
+[node name="InGameMenu" parent="CanvasLayer" instance=ExtResource("2_7r0k7")]
+visible = false
+
+[node name="LevelStartDisplay" type="Control" parent="CanvasLayer"]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -143,8 +67,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_yp77h")
+script = ExtResource("6_yoe00")
 
-[node name="VBoxContainer" type="CenterContainer" parent="CanvasLayer/Credits"]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/LevelStartDisplay"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -152,20 +77,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Credits/VBoxContainer"]
+[node name="LevelStartLabel" type="Label" parent="CanvasLayer/LevelStartDisplay/CenterContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "LEVEL START"
+horizontal_alignment = 1
 
-[node name="Label" type="Label" parent="CanvasLayer/Credits/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-text = "Thanks for playing!"
-
-[node name="MainMenuButtonButton" type="Button" parent="CanvasLayer/Credits/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-text = "Main Menu"
+[node name="Timer" type="Timer" parent="CanvasLayer/LevelStartDisplay"]
+one_shot = true
 
 [connection signal="next_level_button_pressed" from="CanvasLayer/LevelCompleteMenu" to="." method="_on_level_complete_menu_next_level_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/InGameMenu/CenterContainer/VBoxContainer/BackToGameButton" to="." method="_on_back_to_game_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/InGameMenu/CenterContainer/VBoxContainer/ExitToMainMenuButton" to="." method="_on_exit_to_main_menu_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/InGameMenu/CenterContainer/VBoxContainer/ExitToDesktopButton" to="." method="_on_exit_to_desktop_button_pressed"]
+[connection signal="back_to_game_pressed" from="CanvasLayer/InGameMenu" to="." method="_on_in_game_menu_back_to_game_pressed"]
 [connection signal="timeout" from="CanvasLayer/LevelStartDisplay/Timer" to="CanvasLayer/LevelStartDisplay" method="_on_timer_timeout"]
-[connection signal="pressed" from="CanvasLayer/Credits/VBoxContainer/VBoxContainer/MainMenuButtonButton" to="." method="_on_exit_to_main_menu_button_pressed"]

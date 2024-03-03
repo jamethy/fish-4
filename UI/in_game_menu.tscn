@@ -1,14 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dbsjqa35qgidl"]
+[gd_scene load_steps=3 format=3 uid="uid://bn6ewwjy8ng6m"]
 
 [ext_resource type="Theme" uid="uid://4g6adh7plvly" path="res://UI/Theme.tres" id="1_2427n"]
-
-[sub_resource type="GDScript" id="GDScript_efb3v"]
-script/source = "extends Control
-
-signal back_to_game_pressed
-
-
-"
+[ext_resource type="Script" path="res://UI/in_game_menu.gd" id="2_tnd1b"]
 
 [node name="InGameMenu" type="Control"]
 layout_mode = 3
@@ -18,7 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_2427n")
-script = SubResource("GDScript_efb3v")
+script = ExtResource("2_tnd1b")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1

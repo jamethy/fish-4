@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b10ws1hsert2j"]
+
+[ext_resource type="Script" path="res://Audio/effect_manager.gd" id="1_7i1vt"]
+
+[node name="EffectsPlayer" type="Node"]
+script = ExtResource("1_7i1vt")
