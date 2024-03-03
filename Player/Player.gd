@@ -3,6 +3,8 @@ class_name Player
 
 @onready var bubble_timer = $BubbleTimer
 @onready var fish_model = $FishModel
+@onready var i_frame_timer = $IFrameTimer
+@onready var animation_player = $AnimationPlayer
 
 
 #Speed Variables
@@ -122,6 +124,12 @@ func _set_health():
 	Events.emit("player_health_changed",{"player_health":health_current})
 
 func _update_health(d:Dictionary):
-	health_current -= d.damage
-	Events.emit("player_health_changed",{"player_health":health_current})
+	if i_frame_timer.is_stopped():
+		i_frame_timer.start()
+		
+		health_current -= d.damage
+		animation_player.play("damage")
+		velocity.z = -1 * SPEED
+		Events.emit("player_health_changed",{"player_health":health_current})
+	
 	

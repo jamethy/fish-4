@@ -7,6 +7,8 @@ signal player_took_damage(d)
 #damage
 signal player_health_changed(d)
 #health_current
+signal screen_shake(d)
+#duration,frequency,amplitude(PIXELS)
 
 func emit(signal_name: String, args: Dictionary = {}):
 	log_signal(signal_name, args)
