@@ -34,7 +34,7 @@ func _load_level(level: int):
 	if not scene:
 		$CanvasLayer/Loading.visible = false
 		$CanvasLayer/Credits.visible = true
-		$CanvasLayer/LevelCompleteMenu.visible = true
+		$CanvasLayer/LevelCompleteMenu.visible = false
 		return
 	var node = scene.instantiate()
 	node.name = "Level"
@@ -89,3 +89,7 @@ func _on_exit_to_main_menu_button_pressed():
 
 func _on_exit_to_desktop_button_pressed():
 	get_tree().quit()
+
+
+func _on_alstrainfinite_fish_button_pressed():
+	OS.shell_open("https://alstrainfinite.itch.io/fish")
