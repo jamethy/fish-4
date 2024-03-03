@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwjiuysva57d8"]
+[gd_scene load_steps=5 format=3 uid="uid://bwjiuysva57d8"]
 
 [ext_resource type="Theme" uid="uid://4g6adh7plvly" path="res://UI/Theme.tres" id="1_s6g85"]
 [ext_resource type="Script" path="res://UI/main_menu.gd" id="2_v037c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rev6p"]
+bg_color = Color(0.242786, 0.537362, 0.282353, 1)
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Theme" id="Theme_fmkkk"]
+Label/styles/normal = SubResource("StyleBoxFlat_rev6p")
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -33,9 +41,15 @@ theme_override_constants/separation = 10
 
 [node name="FishLabel" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 100
-text = "FISH"
+theme_override_font_sizes/font_size = 40
+text = "A fish
+fishing for fish
+in a sea of fish:"
 horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
 
 [node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -46,6 +60,25 @@ text = "Start"
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "Exit"
+
+[node name="Subtitle" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -203.0
+offset_top = 41.0
+offset_right = 222.0
+offset_bottom = 69.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_fmkkk")
+theme_override_font_sizes/font_size = 20
+text = "drowning in fish!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
