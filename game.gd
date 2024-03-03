@@ -92,6 +92,9 @@ func _on_level_complete_menu_next_level_button_pressed():
 func _on_player_health_changed(d:Dictionary):
 	if d.player_health <= 0:
 		$CanvasLayer/GameOver.visible = true
+		var timer_node = get_node_or_null("Level/Timer")
+		if timer_node:
+			timer_node.paused = true
 
 
 func _on_player_found_goal_fish(_d: Dictionary):
