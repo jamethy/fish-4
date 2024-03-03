@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ysghojmkn3mk"
+path="res://.godot/imported/N-Wind_01.ogg-c387f25c5800e1596643624dd66293c8.oggvorbisstr"
+
+[deps]
+
+source_file="res://Audio/Sound Effects/N-Wind_01.ogg"
+dest_files=["res://.godot/imported/N-Wind_01.ogg-c387f25c5800e1596643624dd66293c8.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

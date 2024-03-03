@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dahpud0wdx6hx"
+path="res://.godot/imported/N-Water_09.ogg-9f550c4fb06e04c2739c96f48cd0e8c7.oggvorbisstr"
+
+[deps]
+
+source_file="res://Audio/Sound Effects/N-Water_09.ogg"
+dest_files=["res://.godot/imported/N-Water_09.ogg-9f550c4fb06e04c2739c96f48cd0e8c7.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
