@@ -15,8 +15,8 @@ func _on_player_found_goal_fish(_d: Dictionary):
 	if found:
 		return
 	found = true
-	var tween = get_tree().create_tween()
 	# TODO figure out why scale is being reset
+	#var tween = get_tree().create_tween()
 	#tween.tween_property(self, "scale", Vector3(found_scale, found_scale, found_scale), 10)
 	gravity_scale = 0
 	
