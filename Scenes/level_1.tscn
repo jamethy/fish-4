@@ -1,21 +1,25 @@
-[gd_scene load_steps=9 format=3 uid="uid://bxphh6yxr71w1"]
+[gd_scene load_steps=10 format=3 uid="uid://bxphh6yxr71w1"]
 
 [ext_resource type="Script" path="res://Scenes/level_1.gd" id="1_ljs2u"]
 [ext_resource type="PackedScene" uid="uid://ua1b473dkgkh" path="res://Player/player.tscn" id="2_6lg0r"]
 [ext_resource type="PackedScene" uid="uid://de1ollje6u46c" path="res://Player/player_camera.tscn" id="3_i43rc"]
 [ext_resource type="Texture2D" uid="uid://dafm0canr7uy2" path="res://Assets/Test Tile Textures/texture_01.svg" id="4_n8ncr"]
 [ext_resource type="PackedScene" uid="uid://bgvg735kdpkgt" path="res://goal_fish.tscn" id="5_kv2x8"]
+[ext_resource type="Material" uid="uid://cik4ipio2grxs" path="res://Player/blank_wall_material.tres" id="5_u3bw8"]
 
 [sub_resource type="Environment" id="Environment_4d0ln"]
 ambient_light_color = Color(0.827938, 0.754442, 0.702014, 1)
 ambient_light_energy = 4.16
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.022
+volumetric_fog_albedo = Color(0.985586, 0.865838, 0.795169, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ba813"]
+size = Vector3(26.486, 1, 25.8117)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ulcii"]
 albedo_texture = ExtResource("4_n8ncr")
 uv1_triplanar = true
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ba813"]
-size = Vector3(26.486, 1, 25.8117)
 
 [node name="SimpleLevel" type="Node3D"]
 script = ExtResource("1_ljs2u")
@@ -39,8 +43,8 @@ offset = Vector3(0, 2, -4)
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 13, 13, 0)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Wall1"]
-material_override = SubResource("StandardMaterial3D_ulcii")
 size = Vector3(26.3149, 1, 25.9111)
+material = ExtResource("5_u3bw8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.112973)
@@ -50,8 +54,8 @@ shape = SubResource("BoxShape3D_ba813")
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -13, 13, 0)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Wall2"]
-material_override = SubResource("StandardMaterial3D_ulcii")
 size = Vector3(26.3149, 1, 25.9111)
+material = ExtResource("5_u3bw8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.112973)
@@ -61,9 +65,8 @@ shape = SubResource("BoxShape3D_ba813")
 transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 0, 13, -13)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Wall3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_ulcii")
 size = Vector3(26.3149, 1, 25.9111)
+material = ExtResource("5_u3bw8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.112973)
@@ -73,8 +76,8 @@ shape = SubResource("BoxShape3D_ba813")
 transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 0, 13, 13)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Wall4"]
-material_override = SubResource("StandardMaterial3D_ulcii")
 size = Vector3(26.3149, 1, 25.9111)
+material = ExtResource("5_u3bw8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.112973)
@@ -83,8 +86,8 @@ shape = SubResource("BoxShape3D_ba813")
 [node name="Floor" type="StaticBody3D" parent="."]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Floor"]
-material_override = SubResource("StandardMaterial3D_ulcii")
 size = Vector3(25, 1, 25)
+material = ExtResource("5_u3bw8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.112973)
