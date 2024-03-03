@@ -130,19 +130,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.77814, 1.42896, -9.45517)
 mass = 100.0
 
 [node name="Coral2" parent="." instance=ExtResource("6_vj8nl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.64008, 0.573567, -0.920472)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -7.64008, 0.573567, -0.920472)
 
 [node name="Coral3" parent="." instance=ExtResource("6_vj8nl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2946, 0.573567, 3.33374)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 2.2946, 0.573567, 3.33374)
 
 [node name="Coral4" parent="." instance=ExtResource("6_vj8nl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.24403, 0.573567, -7.90808)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5.24403, 0.573567, -7.90808)
 
 [node name="Coral5" parent="." instance=ExtResource("6_vj8nl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.33993, 0.573567, -10.4071)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -6.33993, 0.573567, -10.4071)
 
 [node name="Coral6" parent="." instance=ExtResource("6_vj8nl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.93965, 0.573567, 9.05579)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -7.93965, 0.573567, 9.05579)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 60.0
