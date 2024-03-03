@@ -47,6 +47,7 @@ func _after_level_loaded():
 	$CanvasLayer/LevelCompleteMenu.visible = false
 	$CanvasLayer/PlayerUI.visible = true
 	$CanvasLayer/LevelStartDisplay.show_for_level_start(current_level)
+	_set_mouse(false)
 
 
 func _unhandled_input(_event):

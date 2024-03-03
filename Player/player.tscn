@@ -1,13 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://ua1b473dkgkh"]
+[gd_scene load_steps=11 format=3 uid="uid://ua1b473dkgkh"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_n87ny"]
 [ext_resource type="PackedScene" uid="uid://fxeu1jvy28rn" path="res://Assets/FishV1/FishV1.gltf" id="2_j08mt"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uuyoy"]
 height = 2.409
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bglvr"]
-points = PackedVector3Array(-1, 0, -2, 1, 0, -2, -1, 0, 2, 1, 0, 2, 0.5, 0.75, 1, -0.5, 0.75, 1, 0.5, 0.75, -1, -0.5, 0.75, -1)
 
 [sub_resource type="Animation" id="Animation_m8jgx"]
 length = 0.001
@@ -126,16 +123,8 @@ _data = {
 "reset": SubResource("Animation_nq8nm")
 }
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k4yjx"]
-albedo_color = Color(0.921569, 0.756863, 0.45098, 1)
-emission_enabled = true
-emission = Color(0.8, 0.764706, 0.129412, 1)
-emission_energy_multiplier = 5.85
-
-[sub_resource type="SphereMesh" id="SphereMesh_mi6v0"]
-material = SubResource("StandardMaterial3D_k4yjx")
-radius = 0.05
-height = 0.1
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bglvr"]
+points = PackedVector3Array(-1, 0, -2, 1, 0, -2, -1, 0, 2.5, 1, 0, 2.5, 0.5, 1, 1, -0.5, 1, 1, 0.5, 1, -1, -0.5, 1, -1)
 
 [node name="Player" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -152,10 +141,6 @@ shape = SubResource("CapsuleShape3D_uuyoy")
 [node name="BubbleTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="RampCollisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0, -0.5, 0)
-shape = SubResource("ConvexPolygonShape3D_bglvr")
-
 [node name="IFrameTimer" type="Timer" parent="."]
 one_shot = true
 
@@ -164,9 +149,13 @@ libraries = {
 "": SubResource("AnimationLibrary_2fmi1")
 }
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 1.5)
-mesh = SubResource("SphereMesh_mi6v0")
+[node name="ramp" type="StaticBody3D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="RampCollisionShape" type="CollisionShape3D" parent="ramp"]
+transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0, -0.5, 0.45867)
+shape = SubResource("ConvexPolygonShape3D_bglvr")
 
 [connection signal="timeout" from="BubbleTimer" to="." method="_on_bubble_timer_timeout"]
 [connection signal="timeout" from="IFrameTimer" to="." method="_on_i_frame_timer_timeout"]
