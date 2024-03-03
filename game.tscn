@@ -13,7 +13,6 @@ script = ExtResource("1_kv4yy")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PlayerUI" parent="CanvasLayer" instance=ExtResource("5_5305u")]
-visible = false
 mouse_filter = 2
 
 [node name="GameOver" type="CenterContainer" parent="CanvasLayer"]
@@ -47,7 +46,6 @@ offset_bottom = 50.0
 grow_vertical = 2
 
 [node name="LevelStartDisplay" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

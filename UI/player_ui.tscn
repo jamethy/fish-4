@@ -1,16 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://4u2i6u4k6pjm"]
+[gd_scene load_steps=8 format=3 uid="uid://bf5mblylftb5n"]
 
 [ext_resource type="Theme" uid="uid://4g6adh7plvly" path="res://UI/Theme.tres" id="1_vjwlb"]
 [ext_resource type="Script" path="res://UI/Interface.gd" id="2_olq81"]
-[ext_resource type="Texture2D" uid="uid://db3l4t26p4meo" path="res://UI/icons.png" id="3_k40mi"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x6dju"]
+load_path = "res://.godot/imported/icons.png-29ccdb854263be89d7c6f7985585b8da.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pfkww"]
-atlas = ExtResource("3_k40mi")
+atlas = SubResource("CompressedTexture2D_x6dju")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3x4cv"]
-atlas = ExtResource("3_k40mi")
+atlas = SubResource("CompressedTexture2D_x6dju")
 region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ilmn"]
+bg_color = Color(0.733333, 0.541176, 0.113725, 1)
+
+[sub_resource type="Theme" id="Theme_osqtw"]
+Label/styles/normal = SubResource("StyleBoxFlat_2ilmn")
 
 [node name="PlayerUI" type="Control"]
 layout_mode = 3
@@ -50,3 +58,19 @@ text = "Wiggles Remaining - 5"
 
 [node name="HeartContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="InstructionsLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -106.0
+offset_top = 8.0
+offset_right = 106.0
+offset_bottom = 44.0
+grow_horizontal = 2
+size_flags_vertical = 0
+theme = SubResource("Theme_osqtw")
+text = "Find the GOLD fish!"
+horizontal_alignment = 1
+vertical_alignment = 1
