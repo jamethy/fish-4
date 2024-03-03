@@ -17,7 +17,7 @@ script = ExtResource("1_jx4np")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
 use_collision = true
-collision_layer = 2
+collision_layer = 8
 collision_mask = 2
 radius = 0.05
 radial_segments = 16

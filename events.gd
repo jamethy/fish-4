@@ -1,8 +1,8 @@
 extends Node
 
 signal player_found_goal_fish(d)
-signal player_wriggled(d)
-#wriggle count
+signal player_wiggled(d)
+#wiggle count
 signal player_took_damage(d)
 #damage
 signal player_health_changed(d)
