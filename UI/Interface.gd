@@ -1,6 +1,5 @@
 extends Control
 @onready var wiggle_count = $MarginContainer/HBoxContainer/VBoxContainer/WiggleCount
-@onready var health_count = $MarginContainer/HBoxContainer/VBoxContainer/HealthCount
 @onready var heart_container = $MarginContainer/HBoxContainer/VBoxContainer/HeartContainer
 
 
@@ -21,8 +20,9 @@ func _on_player_wiggled(d:Dictionary):
 	wiggle_count.text = "Wiggles Remaining-%s" % d.bubble_count
 
 func _on_player_health_changed(d:Dictionary):
-	health_count.text = "Health - %s" % d.player_health
 	current_health = d.player_health
+	for child in heart_container.get_children():
+		child.queue_free()
 	for i in max_health:
 		var heart = TextureRect.new()
 		if i < current_health:

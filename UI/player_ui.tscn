@@ -50,11 +50,5 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "Wiggles Remaining - 5"
 
-[node name="HealthCount" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "Health - 5"
-
 [node name="HeartContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
