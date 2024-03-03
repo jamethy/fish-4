@@ -1,6 +1,7 @@
 extends RigidBody3D
 
 @export var found_scale = 5
+@export var max_victory_height = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,7 +16,8 @@ func _on_player_found_goal_fish(_d: Dictionary):
 		return
 	found = true
 	var tween = get_tree().create_tween()
-	tween.tween_property(self, "scale", Vector3(found_scale, found_scale, found_scale), 10)
+	# TODO figure out why scale is being reset
+	#tween.tween_property(self, "scale", Vector3(found_scale, found_scale, found_scale), 10)
 	gravity_scale = 0
 	
 		
@@ -26,4 +28,6 @@ func _physics_process(delta):
 	
 	$CollisionShape3D.rotation.y += 2 * delta
 	$FishModel.rotation.y = $CollisionShape3D.rotation.y
-	position.y += 2 * delta
+	var destination_height = min(position.y + 2*delta, max_victory_height)
+	var weight = (max_victory_height - position.y)/max_victory_height
+	position.y = lerpf(position.y, destination_height, weight)
