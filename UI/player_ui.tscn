@@ -1,7 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://4u2i6u4k6pjm"]
+[gd_scene load_steps=6 format=3 uid="uid://4u2i6u4k6pjm"]
 
 [ext_resource type="Theme" uid="uid://4g6adh7plvly" path="res://UI/Theme.tres" id="1_vjwlb"]
 [ext_resource type="Script" path="res://UI/Interface.gd" id="2_olq81"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x6dju"]
+load_path = "res://.godot/imported/icons.png-29ccdb854263be89d7c6f7985585b8da.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pfkww"]
+atlas = SubResource("CompressedTexture2D_x6dju")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3x4cv"]
+atlas = SubResource("CompressedTexture2D_x6dju")
+region = Rect2(0, 0, 32, 32)
 
 [node name="PlayerUI" type="Control"]
 layout_mode = 3
@@ -12,6 +23,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_vjwlb")
 script = ExtResource("2_olq81")
+health_full = SubResource("AtlasTexture_pfkww")
+health_empty = SubResource("AtlasTexture_3x4cv")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -42,3 +55,6 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "Health - 5"
+
+[node name="HeartContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
