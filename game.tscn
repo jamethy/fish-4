@@ -13,8 +13,6 @@ script = ExtResource("1_kv4yy")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PlayerUI" parent="CanvasLayer" instance=ExtResource("5_5305u")]
-visible = false
-mouse_filter = 2
 
 [node name="GameOver" type="CenterContainer" parent="CanvasLayer"]
 visible = false
@@ -23,6 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 0
 theme = ExtResource("2_yp77h")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameOver"]
@@ -56,6 +55,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("2_yp77h")
 script = ExtResource("6_yoe00")
 
