@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bf5mblylftb5n"]
+[gd_scene load_steps=11 format=3 uid="uid://bf5mblylftb5n"]
 
 [ext_resource type="Theme" uid="uid://4g6adh7plvly" path="res://UI/Theme.tres" id="1_vjwlb"]
 [ext_resource type="Script" path="res://UI/Interface.gd" id="2_olq81"]
@@ -14,6 +14,22 @@ region = Rect2(32, 0, 32, 32)
 atlas = SubResource("CompressedTexture2D_x6dju")
 region = Rect2(0, 0, 32, 32)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aegpf"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.215427, 0.227161, 0.282353, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lalnc"]
+
+[sub_resource type="Theme" id="Theme_36sl8"]
+Label/styles/normal = SubResource("StyleBoxEmpty_lalnc")
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ilmn"]
 bg_color = Color(0.733333, 0.541176, 0.113725, 1)
 
@@ -27,6 +43,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("1_vjwlb")
 script = ExtResource("2_olq81")
 health_full = SubResource("AtlasTexture_pfkww")
@@ -39,6 +56,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
@@ -46,6 +64,7 @@ theme_override_constants/margin_bottom = 8
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -58,6 +77,59 @@ text = "Wiggles Remaining - 5"
 
 [node name="HeartContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "controls:"
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_aegpf")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer"]
+layout_mode = 2
+theme = SubResource("Theme_36sl8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Space: "
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "W:"
+
+[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Q:"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Boost"
+horizontal_alignment = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Forward"
+horizontal_alignment = 2
+
+[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Wriggle"
+horizontal_alignment = 2
 
 [node name="InstructionsLabel" type="Label" parent="."]
 layout_mode = 1
