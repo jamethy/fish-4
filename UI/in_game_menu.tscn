@@ -37,15 +37,21 @@ theme_override_font_sizes/font_size = 50
 text = "FISH"
 horizontal_alignment = 1
 
+[node name="BackToGameButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Back"
+
 [node name="ExitToMainMenuButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
-text = "Exit"
+theme_override_font_sizes/font_size = 12
+text = "Exit to Main Manu"
 
 [node name="ExitToDesktopButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
-text = "Exit"
+theme_override_font_sizes/font_size = 12
+text = "Exit to Desktop"
 
+[connection signal="pressed" from="CenterContainer/VBoxContainer/BackToGameButton" to="." method="_on_back_to_game_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ExitToMainMenuButton" to="." method="_on_exit_to_main_menu_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ExitToDesktopButton" to="." method="_on_exit_to_desktop_button_pressed"]

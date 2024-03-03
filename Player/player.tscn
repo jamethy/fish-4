@@ -9,8 +9,8 @@ height = 2.409
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bglvr"]
 points = PackedVector3Array(-1, 0, -2, 1, 0, -2, -1, 0, 2, 1, 0, 2, 0.5, 0.75, 1, -0.5, 0.75, 1, 0.5, 0.75, -1, -0.5, 0.75, -1)
 
-[sub_resource type="Animation" id="Animation_nq8nm"]
-resource_name = "reset"
+[sub_resource type="Animation" id="Animation_m8jgx"]
+length = 0.001
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6fmm"]
 transparency = 1
@@ -46,8 +46,8 @@ tracks/1/keys = {
 "values": [true, false, true, false, true, false, true, false, true]
 }
 
-[sub_resource type="Animation" id="Animation_m8jgx"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_nq8nm"]
+resource_name = "reset"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2fmi1"]
 _data = {

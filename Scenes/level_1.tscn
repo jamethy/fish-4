@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxphh6yxr71w1"]
+[gd_scene load_steps=9 format=3 uid="uid://bxphh6yxr71w1"]
 
 [ext_resource type="Script" path="res://Scenes/level_1.gd" id="1_ljs2u"]
 [ext_resource type="PackedScene" uid="uid://ua1b473dkgkh" path="res://Player/player.tscn" id="2_6lg0r"]
 [ext_resource type="PackedScene" uid="uid://de1ollje6u46c" path="res://Player/player_camera.tscn" id="3_i43rc"]
 [ext_resource type="Texture2D" uid="uid://dafm0canr7uy2" path="res://Assets/Test Tile Textures/texture_01.svg" id="4_n8ncr"]
 [ext_resource type="PackedScene" uid="uid://bgvg735kdpkgt" path="res://goal_fish.tscn" id="5_kv2x8"]
-[ext_resource type="PackedScene" uid="uid://be6xm0nuj6sko" path="res://UI/level_complete_menu.tscn" id="6_enhbh"]
 
 [sub_resource type="Environment" id="Environment_4d0ln"]
 ambient_light_color = Color(0.827938, 0.754442, 0.702014, 1)
@@ -32,6 +31,7 @@ burst_velocity = 35.0
 
 [node name="Camera3D" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_i43rc")]
 transform = Transform3D(-1, 3.90966e-08, -7.81933e-08, 0, 0.894428, 0.447213, 8.74228e-08, 0.447213, -0.894428, -0.00230026, 3.03129, -11.1565)
+current = true
 target = NodePath("../Player2")
 offset = Vector3(0, 2, -4)
 
@@ -108,7 +108,3 @@ mass = 100.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.124381, 0.992235, 0, -0.992235, -0.124381, 0, 13.6152, 0)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="LevelCompleteMenu" parent="CanvasLayer" instance=ExtResource("6_enhbh")]

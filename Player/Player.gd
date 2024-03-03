@@ -34,26 +34,22 @@ var has_bubble = true
 #Input Variables
 var direction = Vector3.ZERO
 var mouse_sensitivity = 0.2
-var mouse_visible = false
 var input_dir:Vector2 = Vector2.ZERO
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	mouse_visible = false
 	_set_health()
 	Events.player_took_damage.connect(_update_health)
 
 
-func _input(event):
+func  _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		rotate_y(deg_to_rad(event.relative.x * mouse_sensitivity * -1))
-
-func  _unhandled_input(event):
 	if Input.is_action_just_pressed("Bubble") and has_bubble and bubble_count > 0:
 		_create_bubble()
+	
 
 func _physics_process(delta):
 	# Add the gravity.

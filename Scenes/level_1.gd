@@ -16,5 +16,4 @@ func _ready():
 	Events.player_found_goal_fish.connect(_on_player_found_goal_fish)
 
 func _on_player_found_goal_fish(_d: Dictionary):
-	$CanvasLayer.visible = true
 	$Camera3D.target = $GoalFish
