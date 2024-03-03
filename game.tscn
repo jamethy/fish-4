@@ -13,6 +13,7 @@ script = ExtResource("1_kv4yy")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PlayerUI" parent="CanvasLayer" instance=ExtResource("5_5305u")]
+visible = false
 
 [node name="GameOver" type="CenterContainer" parent="CanvasLayer"]
 visible = false
