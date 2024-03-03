@@ -8,10 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://bgvg735kdpkgt" path="res://goal_fish.tscn" id="5_kak6c"]
 [ext_resource type="PackedScene" path="res://Obstacles/coral1.tscn" id="6_vj8nl"]
 
-[sub_resource type="Environment" id="Environment_4d0ln"]
+[sub_resource type="Environment" id="Environment_0ai1g"]
 background_energy_multiplier = 0.0
 ambient_light_color = Color(0.827938, 0.754442, 0.702014, 1)
 ambient_light_energy = 0.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.022
+volumetric_fog_albedo = Color(0.985586, 0.865838, 0.795169, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k4yjx"]
 albedo_color = Color(0.921569, 0.756863, 0.45098, 1)
@@ -35,7 +38,7 @@ uv1_triplanar = true
 script = ExtResource("1_bm822")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_4d0ln")
+environment = SubResource("Environment_0ai1g")
 
 [node name="Player2" parent="." instance=ExtResource("2_rc1tx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00230026, 1.03129, -7.15647)
