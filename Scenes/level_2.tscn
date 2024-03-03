@@ -1,3 +1,4 @@
+
 [gd_scene load_steps=16 format=3 uid="uid://vl7528w02p5u"]
 
 [ext_resource type="Script" path="res://Scenes/level_2.gd" id="1_twths"]
@@ -7,10 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://c42edcfhocd3r" path="res://Assets/Hdri/poly_haven_studio_8k.hdr" id="5_5c65h"]
 [ext_resource type="PackedScene" uid="uid://btweclvwdaubh" path="res://Obstacles/coral1.tscn" id="5_pnrj1"]
 [ext_resource type="PackedScene" uid="uid://bgvg735kdpkgt" path="res://goal_fish.tscn" id="6_acpdv"]
-[ext_resource type="PackedScene" uid="uid://cl8ixxwobx73a" path="res://Obstacles/coral2.tscn" id="7_pcvvk"]
-[ext_resource type="PackedScene" uid="uid://bjt68ujlrt4lv" path="res://Obstacles/coral-4.tscn" id="8_ikixk"]
+[ext_resource type="PackedScene" path="res://Obstacles/coral2.tscn" id="7_pcvvk"]
+[ext_resource type="PackedScene" path="res://Obstacles/coral-4.tscn" id="8_ikixk"]
 [ext_resource type="PackedScene" uid="uid://de1ollje6u46c" path="res://Player/player_camera.tscn" id="8_v4dlt"]
-[ext_resource type="PackedScene" uid="uid://1adhmeiw3spt" path="res://Obstacles/coral-3.tscn" id="9_tdp23"]
+[ext_resource type="PackedScene" path="res://Obstacles/coral-3.tscn" id="9_tdp23"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_28j67"]
 albedo_texture = ExtResource("3_m4ovj")
