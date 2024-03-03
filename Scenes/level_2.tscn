@@ -1,12 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://c4lwtpewl3taj"]
+[gd_scene load_steps=14 format=3 uid="uid://vl7528w02p5u"]
 
 [ext_resource type="Script" path="res://Scenes/level_2.gd" id="1_twths"]
 [ext_resource type="Texture2D" uid="uid://dafm0canr7uy2" path="res://Assets/Test Tile Textures/texture_01.svg" id="3_m4ovj"]
 [ext_resource type="PackedScene" uid="uid://ua1b473dkgkh" path="res://Player/player.tscn" id="4_f2ipx"]
-[ext_resource type="PackedScene" path="res://Obstacles/coral1.tscn" id="5_pnrj1"]
+[ext_resource type="PackedScene" uid="uid://btweclvwdaubh" path="res://Obstacles/coral1.tscn" id="5_pnrj1"]
 [ext_resource type="PackedScene" uid="uid://bgvg735kdpkgt" path="res://goal_fish.tscn" id="6_acpdv"]
-[ext_resource type="PackedScene" path="res://Obstacles/coral2.tscn" id="7_pcvvk"]
+[ext_resource type="PackedScene" uid="uid://cl8ixxwobx73a" path="res://Obstacles/coral2.tscn" id="7_pcvvk"]
+[ext_resource type="PackedScene" uid="uid://bjt68ujlrt4lv" path="res://Obstacles/coral-4.tscn" id="8_ikixk"]
 [ext_resource type="PackedScene" uid="uid://de1ollje6u46c" path="res://Player/player_camera.tscn" id="8_v4dlt"]
+[ext_resource type="PackedScene" uid="uid://1adhmeiw3spt" path="res://Obstacles/coral-3.tscn" id="9_tdp23"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_28j67"]
 albedo_texture = ExtResource("3_m4ovj")
@@ -94,3 +96,9 @@ transform = Transform3D(-1, 3.90967e-08, -7.81933e-08, 0, 0.894427, 0.447214, 8.
 current = true
 target = NodePath("../Player")
 offset = Vector3(0, 1, -2)
+
+[node name="Coral5" parent="." instance=ExtResource("8_ikixk")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 4, 1, -6.6)
+
+[node name="Coral6" parent="." instance=ExtResource("9_tdp23")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -5)

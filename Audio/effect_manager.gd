@@ -15,8 +15,3 @@ func _play_fx():
 	audio_player.play()
 	await audio_player.finished
 	audio_player.queue_free()
-
-func sellect_effect() -> AudioStreamOggVorbis:
-	var effect = sound_effects.pick_random()
-	print()
-	return effect
