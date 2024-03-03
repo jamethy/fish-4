@@ -20,12 +20,12 @@ func _on_player_found_goal_fish(_d: Dictionary):
 	#tween.tween_property(self, "scale", Vector3(found_scale, found_scale, found_scale), 10)
 	gravity_scale = 0
 	
-		
 
 func _physics_process(delta):
 	if not found:
 		return
 	
+	# rotate children because we don't want the camera to rotate
 	$CollisionShape3D.rotation.y += 2 * delta
 	$FishModel.rotation.y = $CollisionShape3D.rotation.y
 	var destination_height = min(position.y + 2*delta, max_victory_height)
