@@ -112,7 +112,6 @@ layout_mode = 2
 text = "LOADING"
 
 [node name="Credits" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -141,6 +140,14 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "https://alstrainfinite.itch.io/fish"
 
+[node name="3DTexturesMeButton" type="Button" parent="CanvasLayer/Credits/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "https://3dtextures.me/"
+
+[node name="SmithsonianButton" type="Button" parent="CanvasLayer/Credits/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "https://3d.si.edu/"
+
 [node name="HSeparator" type="HSeparator" parent="CanvasLayer/Credits/CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
@@ -158,4 +165,6 @@ text = "Continue"
 [connection signal="timeout" from="CanvasLayer/LevelStartDisplay/Timer" to="CanvasLayer/LevelStartDisplay" method="_on_timer_timeout"]
 [connection signal="back_to_game_pressed" from="CanvasLayer/InGameMenu" to="." method="_on_in_game_menu_back_to_game_pressed"]
 [connection signal="pressed" from="CanvasLayer/Credits/CenterContainer/VBoxContainer/AlstrainfiniteFishButton" to="." method="_on_alstrainfinite_fish_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Credits/CenterContainer/VBoxContainer/3DTexturesMeButton" to="." method="_on_d_textures_me_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Credits/CenterContainer/VBoxContainer/SmithsonianButton" to="." method="_on_smithsonian_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Credits/CenterContainer/VBoxContainer/CreditsAcceptButton" to="." method="_on_exit_to_main_menu_button_pressed"]

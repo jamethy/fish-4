@@ -127,3 +127,11 @@ func _on_alstrainfinite_fish_button_pressed():
 func _on_time_ran_out():
 	$CanvasLayer/GameOver.visible = true
 	_set_mouse(true)
+
+
+func _on_d_textures_me_button_pressed():
+	OS.shell_open("https://3dtextures.me/")
+
+
+func _on_smithsonian_button_pressed():
+	OS.shell_open("https://3d.si.edu/")
