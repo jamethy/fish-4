@@ -129,6 +129,7 @@ func _update_health(d:Dictionary):
 		i_frame_timer.start()
 		health_current -= d.damage
 		animation_player.play("damage")
+		Effects._play_random_fx()
 		var backward = global_transform.origin - (self.basis.z * 2)
 		var damage_tween = get_tree().create_tween().set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_OUT)
 		damage_tween.tween_property(self,"global_transform:origin",backward,.2)
