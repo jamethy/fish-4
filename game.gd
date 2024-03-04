@@ -1,7 +1,12 @@
 extends Node
 
-var current_level: int = 1
+var current_level: int = 0
 
+var levels = [
+	preload("res://Scenes/level_1.tscn"),
+	preload("res://Scenes/level_3.tscn"),
+	preload("res://Scenes/level_2.tscn"),
+]
 
 func _ready():
 	Events.player_health_changed.connect(_on_player_health_changed)
@@ -15,7 +20,7 @@ func _ready():
 			has_level_already = true
 			break
 	if not has_level_already:
-		load_level(1)
+		load_level(0)
 	else:
 		_after_level_loaded()
 		
@@ -44,13 +49,12 @@ func _load_level(level: int):
 	if current_level_node != null:
 		remove_child(current_level_node)
 		current_level_node.queue_free()
-	var scene = load("res://Scenes/level_%d.tscn" % level)
-	if not scene:
+	if level >= len(levels):
 		$CanvasLayer/Loading.visible = false
 		$CanvasLayer/Credits.visible = true
 		$CanvasLayer/LevelCompleteMenu.visible = false
 		return
-	var node = scene.instantiate()
+	var node = levels[level].instantiate()
 	node.name = "Level"
 	add_child(node)
 	call_deferred("_after_level_loaded")
