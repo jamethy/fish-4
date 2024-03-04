@@ -15,11 +15,23 @@ func _play_random_fx():
 	self.add_child(new_audio_player)
 	var audio_player = self.get_child(0)
 	audio_player.stream = effect
+	audio_player.pitch_scale= randf_range(.4,1.4)
 	audio_player.play()
 	await audio_player.finished
 	audio_player.queue_free()
+#
 
-func _play_music():
-	music_player.play()
-	
+
+func _play_wind():
+	var effect = preload("res://Audio/Sound Effects/N-Wind_01.ogg")
+	var new_audio_player = AudioStreamPlayer3D.new()
+	self.add_child(new_audio_player)
+	var audio_player = self.get_child(0)
+	audio_player.stream = effect
+	audio_player.play()
+	await audio_player.finished
+	audio_player.queue_free()
+#func _play_music():
+	#music_player.play()
+	#
 	

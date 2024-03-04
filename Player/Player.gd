@@ -63,6 +63,7 @@ func _physics_process(delta):
 	# Handle Burst
 	if Input.is_action_just_pressed("Burst") and has_burst:
 		print("Burst")
+		Effects._play_wind()
 		is_bursting = true
 		burst_timer = burst_timer_max
 		has_burst = false

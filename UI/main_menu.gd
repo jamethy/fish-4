@@ -1,7 +1,10 @@
 extends Control
 
+@onready var audio_stream_player = $AudioStreamPlayer
+
+
 func _ready():
-	Effects._play_music()
+	audio_stream_player.play()
 
 
 func _on_start_button_pressed():

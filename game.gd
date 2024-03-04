@@ -8,7 +8,6 @@ func _ready():
 	Events.player_found_goal_fish.connect(_on_player_found_goal_fish)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
-	Effects._play_music()
 	
 	var has_level_already = false # for testing
 	for c in get_children():

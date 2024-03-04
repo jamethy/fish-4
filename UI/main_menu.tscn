@@ -1,7 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwjiuysva57d8"]
+[gd_scene load_steps=11 format=3 uid="uid://bwjiuysva57d8"]
 
 [ext_resource type="Theme" uid="uid://4g6adh7plvly" path="res://UI/Theme.tres" id="1_s6g85"]
 [ext_resource type="Script" path="res://UI/main_menu.gd" id="2_v037c"]
+[ext_resource type="Texture2D" uid="uid://h2mp0pnu6cv0" path="res://UI/TitlePage-Sheet.png" id="3_e6yk2"]
+[ext_resource type="AudioStream" uid="uid://cfoeoiddhxsd5" path="res://Audio/Underwater_Theme.wav" id="4_s7qfq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_km4tc"]
+atlas = ExtResource("3_e6yk2")
+region = Rect2(0, 0, 480, 270)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rev6p"]
 bg_color = Color(0.242786, 0.537362, 0.282353, 1)
@@ -10,6 +16,45 @@ corner_radius_bottom_left = 10
 
 [sub_resource type="Theme" id="Theme_fmkkk"]
 Label/styles/normal = SubResource("StyleBoxFlat_rev6p")
+
+[sub_resource type="Animation" id="Animation_xsaoa"]
+resource_name = "play"
+length = 30.0
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer2/TextureRect:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14, 14.5, 15, 15.5, 16, 16.5, 17, 17.5, 18, 18.5, 19, 19.5, 20, 20.5, 21, 21.5, 22, 22.5, 23, 23.5, 24, 24.5, 25, 25.5, 26, 26.5, 27, 27.5, 28, 28.5, 29, 29.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 0, 480, 270), Rect2(480, 0, 480, 270), Rect2(960, 0, 480, 270), Rect2(1440, 0, 480, 270), Rect2(1920, 0, 480, 270), Rect2(2400, 0, 480, 270), Rect2(2880, 0, 480, 270), Rect2(3360, 0, 480, 270), Rect2(3840, 0, 480, 270), Rect2(4320, 0, 480, 270), Rect2(0, 270, 480, 270), Rect2(480, 270, 480, 270), Rect2(960, 270, 480, 270), Rect2(1440, 270, 480, 270), Rect2(1920, 270, 480, 270), Rect2(2400, 270, 480, 270), Rect2(2880, 270, 480, 270), Rect2(3360, 270, 480, 270), Rect2(3840, 270, 480, 270), Rect2(4320, 270, 480, 270), Rect2(0, 540, 480, 270), Rect2(480, 540, 480, 270), Rect2(960, 540, 480, 270), Rect2(1440, 540, 480, 270), Rect2(1920, 540, 480, 270), Rect2(2400, 540, 480, 270), Rect2(2880, 540, 480, 270), Rect2(3360, 540, 480, 270), Rect2(3840, 540, 480, 270), Rect2(4320, 540, 480, 270), Rect2(0, 810, 480, 270), Rect2(480, 810, 480, 270), Rect2(960, 810, 480, 270), Rect2(1440, 810, 480, 270), Rect2(1920, 810, 480, 270), Rect2(2400, 810, 480, 270), Rect2(2880, 810, 480, 270), Rect2(3360, 810, 480, 270), Rect2(3840, 810, 480, 270), Rect2(4320, 810, 480, 270), Rect2(0, 1080, 480, 270), Rect2(480, 1080, 480, 270), Rect2(960, 1080, 480, 270), Rect2(1440, 1080, 480, 270), Rect2(1920, 1080, 480, 270), Rect2(2400, 1080, 480, 270), Rect2(2880, 1080, 480, 270), Rect2(3360, 1080, 480, 270), Rect2(3840, 1080, 480, 270), Rect2(4320, 1080, 480, 270), Rect2(0, 1350, 480, 270), Rect2(480, 1350, 480, 270), Rect2(960, 1350, 480, 270), Rect2(1440, 1350, 480, 270), Rect2(1920, 1350, 480, 270), Rect2(2400, 1350, 480, 270), Rect2(2880, 1350, 480, 270), Rect2(3360, 1350, 480, 270), Rect2(3840, 1350, 480, 270), Rect2(4320, 1350, 480, 270)]
+}
+
+[sub_resource type="Animation" id="Animation_mibvi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer2/TextureRect:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 480, 270)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c8iak"]
+_data = {
+"RESET": SubResource("Animation_mibvi"),
+"play": SubResource("Animation_xsaoa")
+}
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -20,6 +65,20 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_s6g85")
 script = ExtResource("2_v037c")
+
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer2"]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 2
+texture = SubResource("AtlasTexture_km4tc")
+stretch_mode = 4
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -79,6 +138,16 @@ theme_override_font_sizes/font_size = 20
 text = "drowning in fish!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_c8iak")
+}
+autoplay = "play"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_s7qfq")
+volume_db = -2.0
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
