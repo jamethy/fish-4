@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://dbr356jchwtik"]
+[gd_scene load_steps=8 format=3 uid="uid://dbr356jchwtik"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_kv4yy"]
 [ext_resource type="PackedScene" uid="uid://bn6ewwjy8ng6m" path="res://UI/in_game_menu.tscn" id="2_7r0k7"]
 [ext_resource type="Theme" uid="uid://4g6adh7plvly" path="res://UI/Theme.tres" id="2_yp77h"]
-[ext_resource type="PackedScene" uid="uid://be6xm0nuj6sko" path="res://UI/level_complete_menu.tscn" id="4_wq1xh"]
+[ext_resource type="PackedScene" path="res://UI/level_complete_menu.tscn" id="4_wq1xh"]
 [ext_resource type="PackedScene" uid="uid://bf5mblylftb5n" path="res://UI/player_ui.tscn" id="5_5305u"]
 [ext_resource type="Script" path="res://LevelStartDisplay.gd" id="6_yoe00"]
+[ext_resource type="AudioStream" uid="uid://cfoeoiddhxsd5" path="res://Audio/Underwater_Theme.wav" id="7_4gnm8"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_kv4yy")
@@ -112,6 +113,7 @@ layout_mode = 2
 text = "LOADING"
 
 [node name="Credits" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -159,6 +161,11 @@ text = "Thanks for playing!"
 [node name="CreditsAcceptButton" type="Button" parent="CanvasLayer/Credits/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Continue"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_4gnm8")
+volume_db = -2.0
+autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/GameOver/VBoxContainer/Button" to="." method="_on_exit_to_main_menu_button_pressed"]
 [connection signal="next_level_button_pressed" from="CanvasLayer/LevelCompleteMenu" to="." method="_on_level_complete_menu_next_level_button_pressed"]

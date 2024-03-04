@@ -28,6 +28,7 @@ func _play_wind():
 	self.add_child(new_audio_player)
 	var audio_player = self.get_child(0)
 	audio_player.stream = effect
+	audio_player.pitch_scale= randf_range(.4,1.4)
 	audio_player.play()
 	await audio_player.finished
 	audio_player.queue_free()
