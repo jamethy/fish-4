@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Events="*res://events.gd"
-Effects="*res://Audio/effect_manager.gd"
+Effects="*res://Audio/effects_player.tscn"
 
 [display]
 

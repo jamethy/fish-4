@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://b10ws1hsert2j"]
+[gd_scene load_steps=3 format=3 uid="uid://b10ws1hsert2j"]
 
 [ext_resource type="Script" path="res://Audio/effect_manager.gd" id="1_7i1vt"]
+[ext_resource type="AudioStream" uid="uid://cfoeoiddhxsd5" path="res://Audio/Underwater_Theme.wav" id="2_7ry03"]
 
-[node name="EffectsPlayer" type="Node"]
+[node name="Effects" type="Node"]
 script = ExtResource("1_7i1vt")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_7ry03")
+volume_db = -9.265

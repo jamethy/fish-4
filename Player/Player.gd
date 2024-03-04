@@ -112,7 +112,7 @@ func  _create_bubble():
 	bubble_timer.start()
 	var scene = BUBBLE.instantiate()
 	self.add_child(scene)
-	Effects._play_fx()
+	Effects._play_random_fx()
 	
 
 func _on_bubble_timer_timeout():
